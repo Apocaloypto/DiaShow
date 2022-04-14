@@ -116,7 +116,7 @@ namespace Dia
          {
             if (_diaControl == null)
             {
-               _diaControl = new ToolDiaControl();
+               _diaControl = new ToolDiaControl(_diaController);
                _diaControl.FormClosed += _diaControl_FormClosed;
                _diaControl.Show(this);
             }

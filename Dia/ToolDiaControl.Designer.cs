@@ -30,7 +30,7 @@
       {
          this.progTimer = new System.Windows.Forms.ProgressBar();
          this.btnReverse = new System.Windows.Forms.Button();
-         this.btnPlayPause = new System.Windows.Forms.Button();
+         this.btnPlayPause = new Dia.PlayPauseButton();
          this.btnForward = new System.Windows.Forms.Button();
          this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
          this.tableLayoutPanel1.SuspendLayout();
@@ -48,6 +48,7 @@
          // btnReverse
          // 
          this.btnReverse.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.btnReverse.Image = global::Dia.Properties.Resources.back;
          this.btnReverse.Location = new System.Drawing.Point(3, 33);
          this.btnReverse.Name = "btnReverse";
          this.btnReverse.Size = new System.Drawing.Size(79, 24);
@@ -59,6 +60,8 @@
          this.btnPlayPause.Dock = System.Windows.Forms.DockStyle.Fill;
          this.btnPlayPause.Location = new System.Drawing.Point(88, 33);
          this.btnPlayPause.Name = "btnPlayPause";
+         this.btnPlayPause.PauseImage = global::Dia.Properties.Resources.pause;
+         this.btnPlayPause.PlayImage = global::Dia.Properties.Resources.play;
          this.btnPlayPause.Size = new System.Drawing.Size(79, 24);
          this.btnPlayPause.TabIndex = 2;
          this.btnPlayPause.UseVisualStyleBackColor = true;
@@ -66,6 +69,7 @@
          // btnForward
          // 
          this.btnForward.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.btnForward.Image = global::Dia.Properties.Resources.forward;
          this.btnForward.Location = new System.Drawing.Point(173, 33);
          this.btnForward.Name = "btnForward";
          this.btnForward.Size = new System.Drawing.Size(81, 24);
@@ -111,7 +115,7 @@
 
       private ProgressBar progTimer;
       private Button btnReverse;
-      private Button btnPlayPause;
+      private PlayPauseButton btnPlayPause;
       private Button btnForward;
       private TableLayoutPanel tableLayoutPanel1;
    }

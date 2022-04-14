@@ -2,7 +2,7 @@
 
 namespace Dia
 {
-   internal class DiaController
+   public class DiaController
    {
       private readonly string[] POSSIBLE_EXTENSIONS = new string[] { ".BMP", ".JPG", ".JPEG", ".EXIF", ".PNG", ".TIFF" };
 
@@ -41,6 +41,8 @@ namespace Dia
       private System.Timers.Timer? _diaTimer;
 
       public event Action<string> LoadFile;
+
+      public bool IsPlaying => _diaTimer != null;
 
       public DiaController(Action<string> loadFile, string? initialFile)
       {
