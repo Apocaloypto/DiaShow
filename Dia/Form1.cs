@@ -1,10 +1,9 @@
-using System.Timers;
-
 namespace Dia
 {
    public partial class Form1 : Form
    {
       private DiaController _diaController;
+      private ToolDiaControl? _diaControl;
 
       public Form1(string? initialFile = null)
       {
@@ -97,6 +96,39 @@ namespace Dia
             fullScreenToolStripMenuItem.Checked = true;
             EnableFullScreen();
          }
+      }
+
+      private void OnClickedDiaController(object sender, EventArgs e)
+      {
+         if (diaControllerToolStripMenuItem.Checked)
+         {
+            // Hide Dia-Control:
+            if (_diaControl != null)
+            {
+               _diaControl.Close();
+               _diaControl.FormClosed -= _diaControl_FormClosed;
+               _diaControl = null;
+            }
+
+            diaControllerToolStripMenuItem.Checked = false;
+         }
+         else
+         {
+            if (_diaControl == null)
+            {
+               _diaControl = new ToolDiaControl();
+               _diaControl.FormClosed += _diaControl_FormClosed;
+               _diaControl.Show(this);
+            }
+
+            diaControllerToolStripMenuItem.Checked = true;
+         }
+      }
+
+      private void _diaControl_FormClosed(object? sender, FormClosedEventArgs e)
+      {
+         _diaControl = null;
+         diaControllerToolStripMenuItem.Checked = false;
       }
    }
 }

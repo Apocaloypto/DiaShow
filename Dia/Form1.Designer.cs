@@ -38,6 +38,7 @@
          this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.fullScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.diaControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).BeginInit();
          this.menuStrip1.SuspendLayout();
          this.SuspendLayout();
@@ -94,7 +95,8 @@
             this.startToolStripMenuItem,
             this.stopToolStripMenuItem,
             this.optionsToolStripMenuItem,
-            this.fullScreenToolStripMenuItem});
+            this.fullScreenToolStripMenuItem,
+            this.diaControllerToolStripMenuItem});
          this.diashowToolStripMenuItem.Name = "diashowToolStripMenuItem";
          this.diashowToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
          this.diashowToolStripMenuItem.Text = "Diashow";
@@ -127,6 +129,13 @@
          this.fullScreenToolStripMenuItem.Text = "FullScreen";
          this.fullScreenToolStripMenuItem.Click += new System.EventHandler(this.OnClickedFullScreen);
          // 
+         // diaControllerToolStripMenuItem
+         // 
+         this.diaControllerToolStripMenuItem.Name = "diaControllerToolStripMenuItem";
+         this.diaControllerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.diaControllerToolStripMenuItem.Text = "Dia-Controller";
+         this.diaControllerToolStripMenuItem.Click += new System.EventHandler(this.OnClickedDiaController);
+         // 
          // Form1
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -158,5 +167,6 @@
       private ToolStripMenuItem optionsToolStripMenuItem;
       private ToolStripMenuItem stopToolStripMenuItem;
       private ToolStripMenuItem fullScreenToolStripMenuItem;
+      private ToolStripMenuItem diaControllerToolStripMenuItem;
    }
 }
