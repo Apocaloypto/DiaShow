@@ -4,110 +4,26 @@ namespace Dia
 {
    public partial class Form1 : Form
    {
-      private readonly string[] POSSIBLE_EXTENSIONS = new string[] { ".BMP", ".JPG", ".JPEG", ".EXIF", ".PNG", ".TIFF" };
-
-      private string[]? _matchingFilesInDir;
-
-      private string? __dir;
-      private string? _dir
-      {
-         get => __dir;
-         set
-         {
-            __dir = value;
-            if (__dir == null)
-            {
-               _matchingFilesInDir = null;
-            }
-            else
-            {
-               try
-               {
-                  var di = new DirectoryInfo(__dir);
-                  _matchingFilesInDir = di.GetFiles()
-                     .Select(fi => fi.Name)
-                     .Where(name => POSSIBLE_EXTENSIONS.Contains(Path.GetExtension(name).ToUpper()))
-                     .ToArray();
-               }
-               catch
-               {
-               }
-            }
-         }
-      }
-
-      private int? _fileIndex;
-
-      private System.Timers.Timer? _diaTimer;
+      private DiaController _diaController;
 
       public Form1(string? initialFile = null)
       {
          InitializeComponent();
 
-         if (!string.IsNullOrEmpty(initialFile))
-         {
-            SetFile(initialFile);
-         }
+         _diaController = new DiaController(OnLoadFile, initialFile);
 
          EnableNormalScreen();
       }
 
-      private void TrySetFile()
+      private void OnLoadFile(string filename)
       {
-         if (!_fileIndex.HasValue && !string.IsNullOrEmpty(_dir))
+         if (thePicture.Image != null)
          {
-            try
-            {
-               if (_matchingFilesInDir?.Length >= 1)
-               {
-                  _fileIndex = 0;
-               }
-            }
-            catch
-            {
-            }
-         }
-      }
-
-      private void LoadFirstPicture()
-      {
-         if (!string.IsNullOrEmpty(_dir))
-         {
-            TrySetFile();
-            if (_fileIndex.HasValue && _matchingFilesInDir != null)
-            {
-               LoadCurrentPicture();
-            }
-         }
-      }
-
-      private void LoadCurrentPicture()
-      {
-         if (_fileIndex.HasValue && !string.IsNullOrEmpty(_dir) && _matchingFilesInDir != null && _fileIndex.Value >= 0 && _fileIndex.Value < _matchingFilesInDir.Length)
-         {
-            if (thePicture.Image != null)
-            {
-               thePicture.Image.Dispose();
-               thePicture.Image = null;
-            }
-
-            thePicture.Image = Image.FromFile(Path.Combine(_dir, _matchingFilesInDir[_fileIndex.Value]));
-         }
-      }
-
-      private void SetFile(string file)
-      {
-         StopCurrentDiaShow();
-         _dir = Path.GetDirectoryName(file);
-
-         int index = -1;
-         if (_matchingFilesInDir != null)
-         {
-            index = Array.IndexOf(_matchingFilesInDir, Path.GetFileName(file));
+            thePicture.Image.Dispose();
+            thePicture.Image = null;
          }
 
-         _fileIndex = index >= 0 ? index : null;
-         LoadFirstPicture();
+         thePicture.Image = Image.FromFile(filename);
       }
 
       private void OnClickedOpenDir(object sender, EventArgs e)
@@ -115,10 +31,7 @@ namespace Dia
          FolderBrowserDialog fbd = new FolderBrowserDialog();
          if (fbd.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(fbd.SelectedPath))
          {
-            StopCurrentDiaShow();
-            _dir = fbd.SelectedPath;
-            _fileIndex = null;
-            LoadFirstPicture();
+            _diaController.SetContext_Dir(fbd.SelectedPath);
          }
       }
 
@@ -127,56 +40,23 @@ namespace Dia
          OpenFileDialog ofd = new OpenFileDialog();
          if (ofd.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(ofd.FileName))
          {
-            SetFile(ofd.FileName);
-         }
-      }
-
-      private void OnDiaNextImage(object? sender, ElapsedEventArgs e)
-      {
-         if (_fileIndex.HasValue && _matchingFilesInDir != null)
-         {
-            _fileIndex++;
-            _fileIndex = _fileIndex % _matchingFilesInDir.Length;
-
-            LoadCurrentPicture();
-         }
-      }
-
-      private void StopCurrentDiaShow()
-      {
-         if (_diaTimer != null)
-         {
-            _diaTimer.Stop();
-            _diaTimer.Elapsed -= OnDiaNextImage;
-            _diaTimer.Enabled = false;
-            _diaTimer = null;
+            _diaController.SetContext_File(ofd.FileName);
          }
       }
 
       private void OnClickedDiaStart(object sender, EventArgs e)
       {
-         StartDiaShow();
-      }
-
-      private void StartDiaShow()
-      {
-         StopCurrentDiaShow();
-
-         _diaTimer = new System.Timers.Timer(DiaOptions.ImageShowMilliSecs);
-         _diaTimer.Elapsed += OnDiaNextImage;
-         _diaTimer.Enabled = true;
-         _diaTimer.Start();
+         _diaController.StartDiaShow();
       }
 
       private void OnClickDiaStop(object sender, EventArgs e)
       {
-         StopCurrentDiaShow();
+         _diaController.StopDiaShow();
       }
 
       private void OnClickedDiaOptions(object sender, EventArgs e)
       {
-         bool hadToStop = _diaTimer != null;
-         StopCurrentDiaShow();
+         bool hadToStop = _diaController.StopDiaShow();
 
          using (var optionDlg = new Options())
          {
@@ -185,7 +65,7 @@ namespace Dia
 
          if (hadToStop)
          {
-            StartDiaShow();
+            _diaController.StartDiaShow();
          }
       }
 
