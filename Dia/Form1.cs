@@ -105,8 +105,8 @@ namespace Dia
             // Hide Dia-Control:
             if (_diaControl != null)
             {
-               _diaControl.Close();
                _diaControl.FormClosed -= _diaControl_FormClosed;
+               _diaControl.Close();
                _diaControl = null;
             }
 
