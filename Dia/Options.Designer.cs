@@ -32,6 +32,8 @@
          this.tbxDuration = new System.Windows.Forms.TextBox();
          this.btnCancel = new System.Windows.Forms.Button();
          this.btnOK = new System.Windows.Forms.Button();
+         this.label2 = new System.Windows.Forms.Label();
+         this.cbxSortingMode = new System.Windows.Forms.ComboBox();
          this.SuspendLayout();
          // 
          // label1
@@ -72,16 +74,39 @@
          this.btnOK.UseVisualStyleBackColor = true;
          this.btnOK.Click += new System.EventHandler(this.OnBtnClickedOK);
          // 
+         // label2
+         // 
+         this.label2.AutoSize = true;
+         this.label2.Location = new System.Drawing.Point(12, 44);
+         this.label2.Name = "label2";
+         this.label2.Size = new System.Drawing.Size(45, 15);
+         this.label2.TabIndex = 4;
+         this.label2.Text = "Sorting";
+         // 
+         // cbxSortingMode
+         // 
+         this.cbxSortingMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+         this.cbxSortingMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+         this.cbxSortingMode.FormattingEnabled = true;
+         this.cbxSortingMode.Location = new System.Drawing.Point(101, 41);
+         this.cbxSortingMode.Name = "cbxSortingMode";
+         this.cbxSortingMode.Size = new System.Drawing.Size(241, 23);
+         this.cbxSortingMode.TabIndex = 5;
+         // 
          // Options
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(354, 143);
+         this.Controls.Add(this.cbxSortingMode);
+         this.Controls.Add(this.label2);
          this.Controls.Add(this.btnOK);
          this.Controls.Add(this.btnCancel);
          this.Controls.Add(this.tbxDuration);
          this.Controls.Add(this.label1);
          this.Name = "Options";
+         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
          this.Text = "Options";
          this.ResumeLayout(false);
          this.PerformLayout();
@@ -94,5 +119,7 @@
       private TextBox tbxDuration;
       private Button btnCancel;
       private Button btnOK;
+      private Label label2;
+      private ComboBox cbxSortingMode;
    }
 }

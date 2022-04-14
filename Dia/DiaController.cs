@@ -27,6 +27,7 @@ namespace Dia
                   _matchingFilesInDir = di.GetFiles()
                      .Select(fi => fi.Name)
                      .Where(name => POSSIBLE_EXTENSIONS.Contains(Path.GetExtension(name).ToUpper()))
+                     .ConsiderSortMode(DiaOptions.SortingMode)
                      .ToArray();
                }
                catch

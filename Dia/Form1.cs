@@ -47,9 +47,16 @@ namespace Dia
       {
          bool hadToStop = _diaController.StopDiaShow();
 
+         bool hadFullScreen = EnableNormalScreen();
+
          using (var optionDlg = new Options())
          {
             optionDlg.ShowDialog();
+         }
+
+         if (hadFullScreen)
+         {
+            EnableFullScreen();
          }
 
          if (hadToStop)
@@ -65,11 +72,19 @@ namespace Dia
          WindowState = FormWindowState.Maximized;
       }
 
-      private void EnableNormalScreen()
+      private bool EnableNormalScreen()
       {
-         TopMost = false;
-         FormBorderStyle = FormBorderStyle.Sizable;
-         WindowState = FormWindowState.Normal;
+         if (TopMost)
+         {
+            TopMost = false;
+            FormBorderStyle = FormBorderStyle.Sizable;
+            WindowState = FormWindowState.Normal;
+            return true;
+         }
+         else
+         {
+            return false;
+         }
       }
 
       private void OnClickedFullScreen(object sender, EventArgs e)
