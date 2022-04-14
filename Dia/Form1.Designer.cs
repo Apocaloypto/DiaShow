@@ -34,8 +34,6 @@
          this.openDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.diashowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.fullScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.diaControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,28 +90,12 @@
          // diashowToolStripMenuItem
          // 
          this.diashowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startToolStripMenuItem,
-            this.stopToolStripMenuItem,
             this.optionsToolStripMenuItem,
             this.fullScreenToolStripMenuItem,
             this.diaControllerToolStripMenuItem});
          this.diashowToolStripMenuItem.Name = "diashowToolStripMenuItem";
          this.diashowToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
          this.diashowToolStripMenuItem.Text = "Diashow";
-         // 
-         // startToolStripMenuItem
-         // 
-         this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-         this.startToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-         this.startToolStripMenuItem.Text = "Start";
-         this.startToolStripMenuItem.Click += new System.EventHandler(this.OnClickedDiaStart);
-         // 
-         // stopToolStripMenuItem
-         // 
-         this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-         this.stopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-         this.stopToolStripMenuItem.Text = "Stop";
-         this.stopToolStripMenuItem.Click += new System.EventHandler(this.OnClickDiaStop);
          // 
          // optionsToolStripMenuItem
          // 
@@ -163,9 +145,7 @@
       private ToolStripMenuItem openDirToolStripMenuItem;
       private ToolStripMenuItem openFileToolStripMenuItem;
       private ToolStripMenuItem diashowToolStripMenuItem;
-      private ToolStripMenuItem startToolStripMenuItem;
       private ToolStripMenuItem optionsToolStripMenuItem;
-      private ToolStripMenuItem stopToolStripMenuItem;
       private ToolStripMenuItem fullScreenToolStripMenuItem;
       private ToolStripMenuItem diaControllerToolStripMenuItem;
    }

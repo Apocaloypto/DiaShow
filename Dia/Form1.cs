@@ -43,16 +43,6 @@ namespace Dia
          }
       }
 
-      private void OnClickedDiaStart(object sender, EventArgs e)
-      {
-         _diaController.StartDiaShow();
-      }
-
-      private void OnClickDiaStop(object sender, EventArgs e)
-      {
-         _diaController.StopDiaShow();
-      }
-
       private void OnClickedDiaOptions(object sender, EventArgs e)
       {
          bool hadToStop = _diaController.StopDiaShow();

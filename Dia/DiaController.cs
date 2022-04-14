@@ -133,7 +133,7 @@ namespace Dia
          LoadFirstPicture();
       }
 
-      private void OnDiaNextImage(object? sender, ElapsedEventArgs e)
+      private void LoadNextImage()
       {
          if (_fileIndex.HasValue && _matchingFilesInDir != null)
          {
@@ -142,6 +142,25 @@ namespace Dia
 
             LoadCurrentPicture();
          }
+      }
+
+      private void LoadPrevImage()
+      {
+         if (_fileIndex.HasValue && _matchingFilesInDir != null)
+         {
+            _fileIndex--;
+            if (_fileIndex < 0)
+            {
+               _fileIndex = _matchingFilesInDir.Length - 1;
+            }
+
+            LoadCurrentPicture();
+         }
+      }
+
+      private void OnDiaNextImage(object? sender, ElapsedEventArgs e)
+      {
+         LoadNextImage();
       }
 
       public void StartDiaShow()
@@ -168,6 +187,33 @@ namespace Dia
          {
             return false;
          }
+      }
+
+      private void WithRestartingDia(Action @do)
+      {
+         bool wasPlaying = IsPlaying;
+
+         if (IsPlaying)
+         {
+            StopDiaShow();
+         }
+
+         @do();
+
+         if (wasPlaying)
+         {
+            StartDiaShow();
+         }
+      }
+
+      public void NextImage()
+      {
+         WithRestartingDia(LoadNextImage);
+      }
+
+      public void PrevImage()
+      {
+         WithRestartingDia(LoadPrevImage);
       }
    }
 }

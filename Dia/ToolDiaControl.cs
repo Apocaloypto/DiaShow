@@ -42,5 +42,15 @@
             btnPlayPause.IsPlaying = true;
          }
       }
+
+      private void OnBtnClickedNext(object sender, EventArgs e)
+      {
+         _diaController.NextImage();
+      }
+
+      private void OnBtnClickedPrev(object sender, EventArgs e)
+      {
+         _diaController.PrevImage();
+      }
    }
 }

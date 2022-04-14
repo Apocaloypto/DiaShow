@@ -60,10 +60,12 @@
          this.btnReverse.Size = new System.Drawing.Size(79, 24);
          this.btnReverse.TabIndex = 1;
          this.btnReverse.UseVisualStyleBackColor = true;
+         this.btnReverse.Click += new System.EventHandler(this.OnBtnClickedPrev);
          // 
          // btnPlayPause
          // 
          this.btnPlayPause.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.btnPlayPause.IsPlaying = false;
          this.btnPlayPause.Location = new System.Drawing.Point(88, 33);
          this.btnPlayPause.Name = "btnPlayPause";
          this.btnPlayPause.PauseImage = global::Dia.Properties.Resources.pause;
@@ -82,6 +84,7 @@
          this.btnForward.Size = new System.Drawing.Size(81, 24);
          this.btnForward.TabIndex = 3;
          this.btnForward.UseVisualStyleBackColor = true;
+         this.btnForward.Click += new System.EventHandler(this.OnBtnClickedNext);
          // 
          // tableLayoutPanel1
          // 
