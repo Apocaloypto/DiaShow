@@ -43,6 +43,7 @@
          this.progTimer.Location = new System.Drawing.Point(3, 3);
          this.progTimer.Name = "progTimer";
          this.progTimer.Size = new System.Drawing.Size(251, 24);
+         this.progTimer.Step = 1;
          this.progTimer.TabIndex = 0;
          // 
          // btnReverse
@@ -65,6 +66,7 @@
          this.btnPlayPause.Size = new System.Drawing.Size(79, 24);
          this.btnPlayPause.TabIndex = 2;
          this.btnPlayPause.UseVisualStyleBackColor = true;
+         this.btnPlayPause.Click += new System.EventHandler(this.OnClickedPlayPause);
          // 
          // btnForward
          // 

@@ -19,12 +19,6 @@
          }
       }
 
-      protected override void OnClick(EventArgs e)
-      {
-         base.OnClick(e);
-         IsPlaying = !IsPlaying;
-      }
-
       public void UpdateImage()
       {
          Image = _isPlaying ? PauseImage : PlayImage;
