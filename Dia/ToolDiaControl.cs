@@ -1,6 +1,6 @@
 ﻿namespace Dia
 {
-   public partial class ToolDiaControl : Form
+   public partial class ToolDiaControl : Form, IDisposable
    {
       private DiaController _diaController;
 
@@ -11,6 +11,22 @@
          _diaController = diaController;
          btnPlayPause.IsPlaying = _diaController.IsPlaying;
          btnPlayPause.UpdateImage();
+
+         EnableButtons(_diaController.HasValidContext);
+
+         _diaController.ContextChanged += _diaController_ContextChanged;
+      }
+
+      private void _diaController_ContextChanged(bool validContext)
+      {
+         EnableButtons(validContext);
+      }
+
+      private void EnableButtons(bool enable)
+      {
+         btnForward.Enabled = enable;
+         btnPlayPause.Enabled = enable;
+         btnReverse.Enabled = enable;
       }
 
       private void OnClickedPlayPause(object sender, EventArgs e)

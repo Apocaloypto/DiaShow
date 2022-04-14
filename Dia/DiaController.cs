@@ -41,8 +41,10 @@ namespace Dia
       private System.Timers.Timer? _diaTimer;
 
       public event Action<string> LoadFile;
+      public event Action<bool>? ContextChanged;
 
       public bool IsPlaying => _diaTimer != null;
+      public bool HasValidContext { get; private set; }
 
       public DiaController(Action<string> loadFile, string? initialFile)
       {
@@ -71,24 +73,41 @@ namespace Dia
          }
       }
 
-      private void LoadCurrentPicture()
+      private bool LoadCurrentPicture()
       {
          if (_fileIndex.HasValue && !string.IsNullOrEmpty(_dir) && _matchingFilesInDir != null && _fileIndex.Value >= 0 && _fileIndex.Value < _matchingFilesInDir.Length)
          {
-            LoadFile.Invoke(Path.Combine(_dir, _matchingFilesInDir[_fileIndex.Value]));
+            try
+            {
+               LoadFile.Invoke(Path.Combine(_dir, _matchingFilesInDir[_fileIndex.Value]));
+               return true;
+            }
+            catch
+            {
+            }
          }
+
+         return false;
       }
 
       private void LoadFirstPicture()
       {
+         bool validContext = false;
+
          if (!string.IsNullOrEmpty(_dir))
          {
             TrySetFile();
             if (_fileIndex.HasValue && _matchingFilesInDir != null)
             {
-               LoadCurrentPicture();
+               if (LoadCurrentPicture())
+               {
+                  validContext = true;
+               }
             }
          }
+
+         HasValidContext = validContext;
+         ContextChanged?.Invoke(validContext);
       }
 
       public void SetContext_File(string filepath)
