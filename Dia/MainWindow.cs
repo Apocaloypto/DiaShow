@@ -11,6 +11,7 @@ namespace Dia
          InitializeComponent();
 
          _diaController = new DiaController(OnLoadFile, initialFile);
+         UpdateStatusBar();
 
          EnableNormalScreen();
       }
@@ -45,7 +46,7 @@ namespace Dia
 
       private void UpdateStatusBar()
       {
-         toolStripStatusLabel1.Text = _diaController.StatusText;
+         toolStripStatusLabel1.Text = _diaController?.StatusText;
          statusStrip1.Refresh();
       }
 
