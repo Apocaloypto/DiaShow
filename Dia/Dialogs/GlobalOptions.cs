@@ -42,5 +42,17 @@
          DiaOptions.ImageEditor.Reset();
          SetCurrentValues();
       }
+
+      private void OnBtnClickedSave(object sender, EventArgs e)
+      {
+         if (DiaOptions.IsCustomized)
+         {
+            string? saved = DiaOptions.SaveToFile();
+            if (!string.IsNullOrEmpty(saved))
+            {
+               MessageBox.Show($"Saved settings to \"{saved}\"");
+            }
+         }
+      }
    }
 }

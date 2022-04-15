@@ -2,7 +2,7 @@
 {
    public static class DiaOptions
    {
-      private const string SETTINGS_FILE = "settings.cfg";
+      private static string SETTINGS_FILE => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.cfg");
 
       public enum SortingModeEnum
       {
@@ -17,7 +17,7 @@
 
       public static bool IsCustomized => ImageShowMilliSecs.IsCustomized || SortingMode.IsCustomized || ImageEditor.IsCustomized || MainWindowState.IsCustomized;
 
-      public static void SaveToFile()
+      public static string? SaveToFile()
       {
          try
          {
@@ -29,10 +29,12 @@
             };
 
             File.WriteAllLines(SETTINGS_FILE, lines);
+            return SETTINGS_FILE;
          }
          catch (Exception ex)
          {
             MessageBox.Show($"Error saving settings: {ex.Message}");
+            return null;
          }
       }
 
