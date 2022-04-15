@@ -65,7 +65,21 @@ namespace Dia
             string? currentFile = GetCurrentImageFileName();
             if (!string.IsNullOrEmpty(currentFile))
             {
-               return $"Current: {currentFile}";
+               return $"\"{currentFile + 1}\"";
+            }
+            else
+            {
+               return string.Empty;
+            }
+         }
+      }
+      private string FileNumberStatus
+      {
+         get
+         {
+            if (_fileIndex.HasValue)
+            {
+               return $"file {_fileIndex.Value}";
             }
             else
             {
@@ -74,7 +88,7 @@ namespace Dia
          }
       }
 
-      public string StatusText => string.Join(", ", DirStatus, MatchingFileStatus, FileStatus);
+      public string StatusText => StringExtensions.JoinNotEmpty(", ", DirStatus, MatchingFileStatus, FileNumberStatus, FileStatus);
 
       public DiaController(Action<string> loadFile, string? initialFile)
       {
