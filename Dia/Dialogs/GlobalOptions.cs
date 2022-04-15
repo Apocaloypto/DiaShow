@@ -2,16 +2,20 @@
 {
    public partial class GlobalOptions : Form
    {
-      public GlobalOptions()
+      private DiaOptions _diaOptions;
+
+      public GlobalOptions(DiaOptions diaOptions)
       {
          InitializeComponent();
+
+         _diaOptions = diaOptions;
 
          SetCurrentValues();
       }
 
       private void SetCurrentValues()
       {
-         tbxImageEditor.Text = DiaOptions.ImageEditor.CurrentValue;
+         tbxImageEditor.Text = _diaOptions.ImageEditor.CurrentValue;
       }
 
       private void OnBtnClickedSearchImageEditor(object sender, EventArgs e)
@@ -27,7 +31,7 @@
 
       private void OnBtnClickedOK(object sender, EventArgs e)
       {
-         DiaOptions.ImageEditor.CurrentValue = tbxImageEditor.Text;
+         _diaOptions.ImageEditor.CurrentValue = tbxImageEditor.Text;
          DialogResult = DialogResult.OK;
          Close();
       }
@@ -40,7 +44,7 @@
 
       private void OnBtnClickedSetDefaults(object sender, EventArgs e)
       {
-         DiaOptions.ImageEditor.Reset();
+         _diaOptions.ImageEditor.Reset();
          SetCurrentValues();
       }
    }

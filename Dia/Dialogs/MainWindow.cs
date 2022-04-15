@@ -2,6 +2,7 @@ namespace Dia.Dialogs
 {
    public partial class MainWindow : Form
    {
+      private DiaOptions _options;
       private DiaController _diaController;
       private ToolDiaControl? _diaControl;
       private DockingManager? _dockingManager;
@@ -10,7 +11,10 @@ namespace Dia.Dialogs
       {
          InitializeComponent();
 
-         _diaController = new DiaController(OnLoadFile, initialFile);
+         _options = new DiaOptions();
+         _options.LoadFromFile();
+
+         _diaController = new DiaController(_options, OnLoadFile, initialFile);
          UpdateStatusBar();
 
          EnableNormalScreen();
@@ -182,9 +186,17 @@ namespace Dia.Dialogs
 
       private void OnClickedOptions(object sender, EventArgs e)
       {
-         using (var dlg = new GlobalOptions())
+         using (var dlg = new GlobalOptions(_options))
          {
             dlg.ShowDialog();
+         }
+      }
+
+      private void OnClosing(object sender, FormClosingEventArgs e)
+      {
+         if (_options.IsCustomized)
+         {
+            _options.SaveToFile();
          }
       }
    }

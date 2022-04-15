@@ -168,6 +168,7 @@
          this.Name = "MainWindow";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "Diashow";
+         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnClosing);
          this.Shown += new System.EventHandler(this.OnWindowShown);
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).EndInit();
          this.menuStrip1.ResumeLayout(false);
