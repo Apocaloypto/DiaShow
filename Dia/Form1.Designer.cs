@@ -28,6 +28,7 @@
       /// </summary>
       private void InitializeComponent()
       {
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
          this.thePicture = new System.Windows.Forms.PictureBox();
          this.menuStrip1 = new System.Windows.Forms.MenuStrip();
          this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,21 +101,21 @@
          // optionsToolStripMenuItem
          // 
          this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-         this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.optionsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
          this.optionsToolStripMenuItem.Text = "Options...";
          this.optionsToolStripMenuItem.Click += new System.EventHandler(this.OnClickedDiaOptions);
          // 
          // fullScreenToolStripMenuItem
          // 
          this.fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
-         this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
          this.fullScreenToolStripMenuItem.Text = "FullScreen";
          this.fullScreenToolStripMenuItem.Click += new System.EventHandler(this.OnClickedFullScreen);
          // 
          // diaControllerToolStripMenuItem
          // 
          this.diaControllerToolStripMenuItem.Name = "diaControllerToolStripMenuItem";
-         this.diaControllerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.diaControllerToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
          this.diaControllerToolStripMenuItem.Text = "Dia-Controller";
          this.diaControllerToolStripMenuItem.Click += new System.EventHandler(this.OnClickedDiaController);
          // 
@@ -125,6 +126,7 @@
          this.ClientSize = new System.Drawing.Size(1017, 584);
          this.Controls.Add(this.thePicture);
          this.Controls.Add(this.menuStrip1);
+         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
          this.MainMenuStrip = this.menuStrip1;
          this.Name = "Form1";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
