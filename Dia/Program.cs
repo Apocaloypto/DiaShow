@@ -14,7 +14,7 @@ namespace Dia
 
          string? initialFile = args.Length >= 1 ? args[0] : null;
 
-         Application.Run(new MainWindow(initialFile));
+         Application.Run(new Dia.Dialogs.MainWindow(initialFile));
       }
    }
 }

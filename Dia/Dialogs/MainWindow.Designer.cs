@@ -1,4 +1,4 @@
-﻿namespace Dia
+﻿namespace Dia.Dialogs
 {
    partial class MainWindow
    {
@@ -39,6 +39,9 @@
          this.diaControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.statusStrip1 = new System.Windows.Forms.StatusStrip();
          this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+         this.extrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.openInEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).BeginInit();
          this.menuStrip1.SuspendLayout();
          this.statusStrip1.SuspendLayout();
@@ -60,7 +63,8 @@
          // 
          this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.diashowToolStripMenuItem});
+            this.diashowToolStripMenuItem,
+            this.extrasToolStripMenuItem});
          this.menuStrip1.Location = new System.Drawing.Point(0, 0);
          this.menuStrip1.Name = "menuStrip1";
          this.menuStrip1.Size = new System.Drawing.Size(1017, 24);
@@ -102,14 +106,14 @@
          // fullScreenToolStripMenuItem
          // 
          this.fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
-         this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
          this.fullScreenToolStripMenuItem.Text = "FullScreen";
          this.fullScreenToolStripMenuItem.Click += new System.EventHandler(this.OnClickedFullScreen);
          // 
          // diaControllerToolStripMenuItem
          // 
          this.diaControllerToolStripMenuItem.Name = "diaControllerToolStripMenuItem";
-         this.diaControllerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.diaControllerToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
          this.diaControllerToolStripMenuItem.Text = "Dia-Controller";
          this.diaControllerToolStripMenuItem.Click += new System.EventHandler(this.OnClickedDiaController);
          // 
@@ -127,6 +131,27 @@
          // 
          this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
          this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+         // 
+         // extrasToolStripMenuItem
+         // 
+         this.extrasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openInEditorToolStripMenuItem,
+            this.optionsToolStripMenuItem});
+         this.extrasToolStripMenuItem.Name = "extrasToolStripMenuItem";
+         this.extrasToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+         this.extrasToolStripMenuItem.Text = "Extras";
+         // 
+         // openInEditorToolStripMenuItem
+         // 
+         this.openInEditorToolStripMenuItem.Name = "openInEditorToolStripMenuItem";
+         this.openInEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.openInEditorToolStripMenuItem.Text = "Open in Editor...";
+         // 
+         // optionsToolStripMenuItem
+         // 
+         this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+         this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.optionsToolStripMenuItem.Text = "Options...";
          // 
          // MainWindow
          // 
@@ -164,5 +189,8 @@
       private ToolStripMenuItem diaControllerToolStripMenuItem;
       private StatusStrip statusStrip1;
       private ToolStripStatusLabel toolStripStatusLabel1;
+      private ToolStripMenuItem extrasToolStripMenuItem;
+      private ToolStripMenuItem openInEditorToolStripMenuItem;
+      private ToolStripMenuItem optionsToolStripMenuItem;
    }
 }

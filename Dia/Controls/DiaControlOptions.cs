@@ -1,6 +1,6 @@
-﻿namespace Dia
+﻿namespace Dia.Controls
 {
-   public partial class Options : UserControl
+   public partial class DiaControlOptions : UserControl
    {
       private class SortingModeViewModel
       {
@@ -22,7 +22,7 @@
 
       public DiaController? DiaController { get; set; }
 
-      public Options()
+      public DiaControlOptions()
       {
          InitializeComponent();
 

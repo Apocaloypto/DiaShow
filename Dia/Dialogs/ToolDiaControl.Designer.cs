@@ -1,4 +1,4 @@
-﻿namespace Dia
+﻿namespace Dia.Dialogs
 {
    partial class ToolDiaControl
    {
@@ -34,10 +34,10 @@
       private void InitializeComponent()
       {
          this.btnReverse = new System.Windows.Forms.Button();
-         this.btnPlayPause = new Dia.PlayPauseButton();
+         this.btnPlayPause = new Dia.Controls.PlayPauseButton();
          this.btnForward = new System.Windows.Forms.Button();
          this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-         this.options1 = new Dia.Options();
+         this.options1 = new Dia.Controls.DiaControlOptions();
          this.tableLayoutPanel1.SuspendLayout();
          this.SuspendLayout();
          // 
@@ -78,8 +78,8 @@
          // 
          // tableLayoutPanel1
          // 
-         this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+         this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
          this.tableLayoutPanel1.ColumnCount = 3;
          this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
@@ -125,9 +125,9 @@
 
       #endregion
       private Button btnReverse;
-      private PlayPauseButton btnPlayPause;
+      private Controls.PlayPauseButton btnPlayPause;
       private Button btnForward;
       private TableLayoutPanel tableLayoutPanel1;
-      private Options options1;
+      private Controls.DiaControlOptions options1;
    }
 }

@@ -1,4 +1,4 @@
-﻿namespace Dia
+﻿namespace Dia.Dialogs
 {
    public partial class ToolDiaControl : Form, IDisposable
    {

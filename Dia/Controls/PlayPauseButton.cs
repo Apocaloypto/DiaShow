@@ -1,4 +1,4 @@
-﻿namespace Dia
+﻿namespace Dia.Controls
 {
    internal class PlayPauseButton : Button
    {
