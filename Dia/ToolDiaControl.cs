@@ -15,6 +15,8 @@
          EnableButtons(_diaController.HasValidContext);
 
          _diaController.ContextChanged += _diaController_ContextChanged;
+
+         options1.DiaController = _diaController;
       }
 
       private void _diaController_ContextChanged(bool validContext)

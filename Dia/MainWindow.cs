@@ -56,28 +56,6 @@ namespace Dia
          UpdateStatusBar();
       }
 
-      private void OnClickedDiaOptions(object sender, EventArgs e)
-      {
-         bool hadToStop = _diaController.StopDiaShow();
-
-         bool hadFullScreen = EnableNormalScreen();
-
-         using (var optionDlg = new Options())
-         {
-            optionDlg.ShowDialog();
-         }
-
-         if (hadFullScreen)
-         {
-            EnableFullScreen();
-         }
-
-         if (hadToStop)
-         {
-            _diaController.StartDiaShow();
-         }
-      }
-
       private void EnableFullScreen()
       {
          if (WindowState == FormWindowState.Maximized)

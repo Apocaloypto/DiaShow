@@ -1,6 +1,6 @@
 ﻿namespace Dia
 {
-   public partial class Options : Form
+   public partial class Options : UserControl
    {
       private class SortingModeViewModel
       {
@@ -20,6 +20,8 @@
          new SortingModeViewModel("Random", DiaOptions.SortingModeEnum.Random)
       };
 
+      public DiaController? DiaController { get; set; }
+
       public Options()
       {
          InitializeComponent();
@@ -31,27 +33,39 @@
          cbxSortingMode.ValueMember = nameof(SortingModeViewModel.Mode);
 
          cbxSortingMode.SelectedValue = DiaOptions.SortingMode;
+
+         btnApply.Enabled = false;
       }
 
-      private void OnBtnClickedCancel(object sender, EventArgs e)
-      {
-         Close();
-      }
-
-      private void OnBtnClickedOK(object sender, EventArgs e)
+      private void OnBtnClickedApply(object sender, EventArgs e)
       {
          try
          {
             DiaOptions.ImageShowMilliSecs = Convert.ToInt32(tbxDuration.Text);
-
             DiaOptions.SortingMode = (DiaOptions.SortingModeEnum)cbxSortingMode.SelectedValue;
 
-            Close();
+            if (DiaController?.IsPlaying ?? false)
+            {
+               DiaController?.StopDiaShow();
+               DiaController?.StartDiaShow();
+            }
+
+            btnApply.Enabled = false;
          }
          catch (Exception ex)
          {
             MessageBox.Show($"Error converting the value: {ex.Message}");
          }
+      }
+
+      private void OnDurationChanged(object sender, EventArgs e)
+      {
+         btnApply.Enabled = true;
+      }
+
+      private void OnSortmodeChanged(object sender, EventArgs e)
+      {
+         btnApply.Enabled = true;
       }
    }
 }
