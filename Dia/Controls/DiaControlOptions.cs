@@ -22,8 +22,6 @@
 
       public DiaController? DiaController { get; set; }
 
-      public DiaOptions _diaOptions => DiaController?.DiaOptions ?? new DiaOptions();
-
       public DiaControlOptions()
       {
          InitializeComponent();
@@ -32,8 +30,8 @@
          cbxSortingMode.DisplayMember = nameof(SortingModeViewModel.Name);
          cbxSortingMode.ValueMember = nameof(SortingModeViewModel.Mode);
 
-         tbxDuration.Text = $"{_diaOptions.ImageShowMilliSecs.CurrentValue}";
-         cbxSortingMode.SelectedValue = _diaOptions.SortingMode.CurrentValue;
+         tbxDuration.Text = $"{DiaOptions.ImageShowMilliSecs.CurrentValue}";
+         cbxSortingMode.SelectedValue = DiaOptions.SortingMode.CurrentValue;
 
          btnApply.Enabled = false;
       }
@@ -42,8 +40,8 @@
       {
          try
          {
-            _diaOptions.ImageShowMilliSecs.CurrentValue = Convert.ToInt32(tbxDuration.Text);
-            _diaOptions.SortingMode.CurrentValue = (DiaOptions.SortingModeEnum)cbxSortingMode.SelectedValue;
+            DiaOptions.ImageShowMilliSecs.CurrentValue = Convert.ToInt32(tbxDuration.Text);
+            DiaOptions.SortingMode.CurrentValue = (DiaOptions.SortingModeEnum)cbxSortingMode.SelectedValue;
 
             if (DiaController?.IsPlaying ?? false)
             {

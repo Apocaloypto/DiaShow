@@ -53,8 +53,6 @@ namespace Dia
       public event Action<string> LoadFile;
       public event Action<bool>? ContextChanged;
 
-      public DiaOptions DiaOptions { get; set; }
-
       public bool IsPlaying => _diaTimer != null;
       public bool HasValidContext { get; private set; }
 
@@ -78,9 +76,8 @@ namespace Dia
 
       public string StatusText => string.Join(", ", DirStatus, MatchingFileStatus, FileStatus);
 
-      public DiaController(DiaOptions options, Action<string> loadFile, string? initialFile)
+      public DiaController(Action<string> loadFile, string? initialFile)
       {
-         DiaOptions = options;
          LoadFile = loadFile;
 
          if (!string.IsNullOrEmpty(initialFile))
