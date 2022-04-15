@@ -21,19 +21,27 @@ namespace Dia
             }
             else
             {
-               try
-               {
-                  var di = new DirectoryInfo(__dir);
-                  _matchingFilesInDir = di.GetFiles()
-                     .Select(fi => fi.Name)
-                     .Where(name => POSSIBLE_EXTENSIONS.Contains(Path.GetExtension(name).ToUpper()))
-                     .ConsiderSortMode(DiaOptions.SortingMode)
-                     .ToArray();
-               }
-               catch
-               {
-               }
+               ReloadMatchingFiles();
             }
+         }
+      }
+
+      private void ReloadMatchingFiles()
+      {
+         try
+         {
+            if (!string.IsNullOrEmpty(__dir))
+            {
+               var di = new DirectoryInfo(__dir);
+               _matchingFilesInDir = di.GetFiles()
+                  .Select(fi => fi.Name)
+                  .Where(name => POSSIBLE_EXTENSIONS.Contains(Path.GetExtension(name).ToUpper()))
+                  .ConsiderSortMode(DiaOptions.SortingMode)
+                  .ToArray();
+            }
+         }
+         catch
+         {
          }
       }
 
@@ -200,6 +208,8 @@ namespace Dia
       public void StartDiaShow()
       {
          StopDiaShow();
+
+         ReloadMatchingFiles();
 
          _diaTimer = new System.Timers.Timer(DiaOptions.ImageShowMilliSecs);
          _diaTimer.Elapsed += OnDiaNextImage;
