@@ -4,6 +4,7 @@ namespace Dia
    {
       private DiaController _diaController;
       private ToolDiaControl? _diaControl;
+      private DockingManager? _dockingManager;
 
       public MainWindow(string? initialFile = null)
       {
@@ -79,6 +80,11 @@ namespace Dia
 
       private void EnableFullScreen()
       {
+         if (WindowState == FormWindowState.Maximized)
+         {
+            WindowState = FormWindowState.Normal;
+         }
+
          TopMost = true;
          FormBorderStyle = FormBorderStyle.None;
          WindowState = FormWindowState.Maximized;
@@ -143,6 +149,8 @@ namespace Dia
             _diaControl.FormClosed -= _diaControl_FormClosed;
             _diaControl.Close();
             _diaControl = null;
+            _dockingManager?.Dispose();
+            _dockingManager = null;
          }
 
          diaControllerToolStripMenuItem.Checked = false;
@@ -155,6 +163,7 @@ namespace Dia
             _diaControl = new ToolDiaControl(_diaController);
             _diaControl.FormClosed += _diaControl_FormClosed;
             SetDiaControlPosition(_diaControl);
+            _dockingManager = new DockingManager(this, _diaControl);
             _diaControl.Show(this);
          }
 
