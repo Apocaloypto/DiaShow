@@ -11,7 +11,7 @@
 
       private void SetCurrentValues()
       {
-         tbxImageEditor.Text = DiaOptions.ImageEditor;
+         tbxImageEditor.Text = DiaOptions.ImageEditor.CurrentValue;
       }
 
       private void OnBtnClickedSearchImageEditor(object sender, EventArgs e)
@@ -25,7 +25,7 @@
 
       private void OnBtnClickedOK(object sender, EventArgs e)
       {
-         DiaOptions.ImageEditor = tbxImageEditor.Text;
+         DiaOptions.ImageEditor.CurrentValue = tbxImageEditor.Text;
          DialogResult = DialogResult.OK;
          Close();
       }
@@ -34,6 +34,12 @@
       {
          DialogResult = DialogResult.Cancel;
          Close();
+      }
+
+      private void OnBtnClickedSetDefaults(object sender, EventArgs e)
+      {
+         DiaOptions.ImageEditor.Reset();
+         SetCurrentValues();
       }
    }
 }

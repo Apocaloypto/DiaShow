@@ -37,7 +37,7 @@ namespace Dia
                _matchingFilesInDir = di.GetFiles()
                   .Select(fi => fi.Name)
                   .Where(name => POSSIBLE_EXTENSIONS.Contains(Path.GetExtension(name).ToUpper()))
-                  .ConsiderSortMode(DiaOptions.SortingMode)
+                  .ConsiderSortMode(DiaOptions.SortingMode.CurrentValue)
                   .ToArray();
             }
          }
@@ -225,7 +225,7 @@ namespace Dia
 
          ReloadMatchingFiles();
 
-         _diaTimer = new System.Timers.Timer(DiaOptions.ImageShowMilliSecs);
+         _diaTimer = new System.Timers.Timer(DiaOptions.ImageShowMilliSecs.CurrentValue);
          _diaTimer.Elapsed += OnDiaNextImage;
          _diaTimer.Enabled = true;
          _diaTimer.Start();
@@ -276,12 +276,12 @@ namespace Dia
 
       public void OpenCurrentImageInEditor()
       {
-         if (!string.IsNullOrEmpty(DiaOptions.ImageEditor))
+         if (!string.IsNullOrEmpty(DiaOptions.ImageEditor.CurrentValue))
          {
             string? currentFile = GetCurrentImageFilePath();
             if (!string.IsNullOrEmpty(currentFile))
             {
-               Process.Start(DiaOptions.ImageEditor, currentFile);
+               Process.Start(DiaOptions.ImageEditor.CurrentValue, currentFile);
             }
          }
       }

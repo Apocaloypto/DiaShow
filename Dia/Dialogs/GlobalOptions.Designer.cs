@@ -34,6 +34,7 @@
          this.btnImageEditorSearch = new System.Windows.Forms.Button();
          this.btnOK = new System.Windows.Forms.Button();
          this.btnCancel = new System.Windows.Forms.Button();
+         this.btnSetDefaults = new System.Windows.Forms.Button();
          this.tableLayoutPanel1.SuspendLayout();
          this.SuspendLayout();
          // 
@@ -53,6 +54,7 @@
          this.tableLayoutPanel1.Controls.Add(this.btnImageEditorSearch, 4, 0);
          this.tableLayoutPanel1.Controls.Add(this.btnOK, 2, 2);
          this.tableLayoutPanel1.Controls.Add(this.btnCancel, 3, 2);
+         this.tableLayoutPanel1.Controls.Add(this.btnSetDefaults, 0, 2);
          this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
          this.tableLayoutPanel1.Name = "tableLayoutPanel1";
          this.tableLayoutPanel1.RowCount = 3;
@@ -115,6 +117,17 @@
          this.btnCancel.UseVisualStyleBackColor = true;
          this.btnCancel.Click += new System.EventHandler(this.OnBtnClickedCancel);
          // 
+         // btnSetDefaults
+         // 
+         this.btnSetDefaults.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.btnSetDefaults.Location = new System.Drawing.Point(3, 46);
+         this.btnSetDefaults.Name = "btnSetDefaults";
+         this.btnSetDefaults.Size = new System.Drawing.Size(94, 24);
+         this.btnSetDefaults.TabIndex = 5;
+         this.btnSetDefaults.Text = "Set defaults";
+         this.btnSetDefaults.UseVisualStyleBackColor = true;
+         this.btnSetDefaults.Click += new System.EventHandler(this.OnBtnClickedSetDefaults);
+         // 
          // GlobalOptions
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -137,5 +150,6 @@
       private Button btnImageEditorSearch;
       private Button btnOK;
       private Button btnCancel;
+      private Button btnSetDefaults;
    }
 }
