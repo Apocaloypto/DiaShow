@@ -38,8 +38,11 @@
          this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.fullScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.diaControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+         this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).BeginInit();
          this.menuStrip1.SuspendLayout();
+         this.statusStrip1.SuspendLayout();
          this.SuspendLayout();
          // 
          // thePicture
@@ -49,7 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
          this.thePicture.Location = new System.Drawing.Point(12, 27);
          this.thePicture.Name = "thePicture";
-         this.thePicture.Size = new System.Drawing.Size(993, 545);
+         this.thePicture.Size = new System.Drawing.Size(993, 532);
          this.thePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
          this.thePicture.TabIndex = 0;
          this.thePicture.TabStop = false;
@@ -119,11 +122,27 @@
          this.diaControllerToolStripMenuItem.Text = "Dia-Controller";
          this.diaControllerToolStripMenuItem.Click += new System.EventHandler(this.OnClickedDiaController);
          // 
+         // statusStrip1
+         // 
+         this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+         this.statusStrip1.Location = new System.Drawing.Point(0, 562);
+         this.statusStrip1.Name = "statusStrip1";
+         this.statusStrip1.Size = new System.Drawing.Size(1017, 22);
+         this.statusStrip1.TabIndex = 2;
+         this.statusStrip1.Text = "statusStrip1";
+         // 
+         // toolStripStatusLabel1
+         // 
+         this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+         this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+         // 
          // MainWindow
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(1017, 584);
+         this.Controls.Add(this.statusStrip1);
          this.Controls.Add(this.thePicture);
          this.Controls.Add(this.menuStrip1);
          this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -134,6 +153,8 @@
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).EndInit();
          this.menuStrip1.ResumeLayout(false);
          this.menuStrip1.PerformLayout();
+         this.statusStrip1.ResumeLayout(false);
+         this.statusStrip1.PerformLayout();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -150,5 +171,7 @@
       private ToolStripMenuItem optionsToolStripMenuItem;
       private ToolStripMenuItem fullScreenToolStripMenuItem;
       private ToolStripMenuItem diaControllerToolStripMenuItem;
+      private StatusStrip statusStrip1;
+      private ToolStripStatusLabel toolStripStatusLabel1;
    }
 }

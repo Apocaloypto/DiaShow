@@ -103,6 +103,7 @@
          this.Controls.Add(this.tableLayoutPanel1);
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
          this.Name = "ToolDiaControl";
+         this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
          this.Text = "ToolDiaControl";
          this.tableLayoutPanel1.ResumeLayout(false);
          this.ResumeLayout(false);

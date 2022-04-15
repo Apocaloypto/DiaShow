@@ -23,6 +23,14 @@ namespace Dia
          }
 
          thePicture.Image = Image.FromFile(filename);
+
+         UpdateStatusBar();
+      }
+
+      private void UpdateStatusBar()
+      {
+         toolStripStatusLabel1.Text = _diaController.StatusText;
+         statusStrip1.Refresh();
       }
 
       private void OnClickedOpenDir(object sender, EventArgs e)
@@ -32,6 +40,8 @@ namespace Dia
          {
             _diaController.SetContext_Dir(fbd.SelectedPath);
          }
+
+         UpdateStatusBar();
       }
 
       private void OnClickedOpenFile(object sender, EventArgs e)
@@ -41,6 +51,8 @@ namespace Dia
          {
             _diaController.SetContext_File(ofd.FileName);
          }
+
+         UpdateStatusBar();
       }
 
       private void OnClickedDiaOptions(object sender, EventArgs e)

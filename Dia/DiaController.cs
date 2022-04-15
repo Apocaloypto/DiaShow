@@ -47,6 +47,26 @@ namespace Dia
       public bool IsPlaying => _diaTimer != null;
       public bool HasValidContext { get; private set; }
 
+      private string DirStatus => !string.IsNullOrEmpty(_dir) ? $"Directory: {_dir}" : string.Empty;
+      private string MatchingFileStatus => _matchingFilesInDir != null && _matchingFilesInDir.Any() ? $"{_matchingFilesInDir.Length} matching files" : string.Empty;
+      private string FileStatus
+      {
+         get
+         {
+            string? currentFile = GetCurrentImageFileName();
+            if (!string.IsNullOrEmpty(currentFile))
+            {
+               return $"Current: {currentFile}";
+            }
+            else
+            {
+               return string.Empty;
+            }
+         }
+      }
+
+      public string StatusText => string.Join(", ", DirStatus, MatchingFileStatus, FileStatus);
+
       public DiaController(Action<string> loadFile, string? initialFile)
       {
          LoadFile = loadFile;
@@ -74,13 +94,26 @@ namespace Dia
          }
       }
 
-      private bool LoadCurrentPicture()
+      private string? GetCurrentImageFileName()
       {
          if (_fileIndex.HasValue && !string.IsNullOrEmpty(_dir) && _matchingFilesInDir != null && _fileIndex.Value >= 0 && _fileIndex.Value < _matchingFilesInDir.Length)
          {
+            return _matchingFilesInDir[_fileIndex.Value];
+         }
+         else
+         {
+            return null;
+         }
+      }
+
+      private bool LoadCurrentPicture()
+      {
+         string? currentFileName = GetCurrentImageFileName();
+         if (_dir != null && !string.IsNullOrEmpty(currentFileName))
+         {
             try
             {
-               LoadFile.Invoke(Path.Combine(_dir, _matchingFilesInDir[_fileIndex.Value]));
+               LoadFile.Invoke(Path.Combine(_dir, currentFileName));
                return true;
             }
             catch
