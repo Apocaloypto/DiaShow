@@ -37,11 +37,11 @@
          this.diashowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.fullScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.diaControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-         this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-         this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
          this.extrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.openInEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+         this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).BeginInit();
          this.menuStrip1.SuspendLayout();
          this.statusStrip1.SuspendLayout();
@@ -117,21 +117,6 @@
          this.diaControllerToolStripMenuItem.Text = "Dia-Controller";
          this.diaControllerToolStripMenuItem.Click += new System.EventHandler(this.OnClickedDiaController);
          // 
-         // statusStrip1
-         // 
-         this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-         this.statusStrip1.Location = new System.Drawing.Point(0, 562);
-         this.statusStrip1.Name = "statusStrip1";
-         this.statusStrip1.Size = new System.Drawing.Size(1017, 22);
-         this.statusStrip1.TabIndex = 2;
-         this.statusStrip1.Text = "statusStrip1";
-         // 
-         // toolStripStatusLabel1
-         // 
-         this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-         this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-         // 
          // extrasToolStripMenuItem
          // 
          this.extrasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -146,12 +131,28 @@
          this.openInEditorToolStripMenuItem.Name = "openInEditorToolStripMenuItem";
          this.openInEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
          this.openInEditorToolStripMenuItem.Text = "Open in Editor...";
+         this.openInEditorToolStripMenuItem.Click += new System.EventHandler(this.OnClickedOpenInEditor);
          // 
          // optionsToolStripMenuItem
          // 
          this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
          this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
          this.optionsToolStripMenuItem.Text = "Options...";
+         // 
+         // statusStrip1
+         // 
+         this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+         this.statusStrip1.Location = new System.Drawing.Point(0, 562);
+         this.statusStrip1.Name = "statusStrip1";
+         this.statusStrip1.Size = new System.Drawing.Size(1017, 22);
+         this.statusStrip1.TabIndex = 2;
+         this.statusStrip1.Text = "statusStrip1";
+         // 
+         // toolStripStatusLabel1
+         // 
+         this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+         this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
          // 
          // MainWindow
          // 

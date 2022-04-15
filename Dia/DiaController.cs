@@ -1,4 +1,5 @@
-﻿using System.Timers;
+﻿using System.Diagnostics;
+using System.Timers;
 
 namespace Dia
 {
@@ -114,14 +115,27 @@ namespace Dia
          }
       }
 
-      private bool LoadCurrentPicture()
+      private string? GetCurrentImageFilePath()
       {
          string? currentFileName = GetCurrentImageFileName();
          if (_dir != null && !string.IsNullOrEmpty(currentFileName))
          {
+            return Path.Combine(_dir, currentFileName);
+         }
+         else
+         {
+            return null;
+         }
+      }
+
+      private bool LoadCurrentPicture()
+      {
+         string? currentFilePath = GetCurrentImageFilePath();
+         if (!string.IsNullOrEmpty(currentFilePath))
+         {
             try
             {
-               LoadFile.Invoke(Path.Combine(_dir, currentFileName));
+               LoadFile.Invoke(currentFilePath);
                return true;
             }
             catch
@@ -258,6 +272,18 @@ namespace Dia
       public void PrevImage()
       {
          WithRestartingDia(LoadPrevImage);
+      }
+
+      public void OpenCurrentImageInEditor()
+      {
+         if (!string.IsNullOrEmpty(DiaOptions.ImageEditor))
+         {
+            string? currentFile = GetCurrentImageFilePath();
+            if (!string.IsNullOrEmpty(currentFile))
+            {
+               Process.Start(DiaOptions.ImageEditor, currentFile);
+            }
+         }
       }
    }
 }

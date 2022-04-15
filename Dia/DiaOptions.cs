@@ -10,5 +10,6 @@
 
       public static int ImageShowMilliSecs { get; set; } = 1000;
       public static SortingModeEnum SortingMode { get; set; } = SortingModeEnum.ByName;
+      public static string ImageEditor { get; set; } = "mspaint";
    }
 }

@@ -174,5 +174,10 @@ namespace Dia.Dialogs
       {
          OpenDiaControlToolWindow();
       }
+
+      private void OnClickedOpenInEditor(object sender, EventArgs e)
+      {
+         _diaController.OpenCurrentImageInEditor();
+      }
    }
 }
