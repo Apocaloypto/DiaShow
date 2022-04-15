@@ -10,11 +10,12 @@
          Random
       }
 
-      public static OptionValue<int> ImageShowMilliSecs { get; set; } = new OptionValue<int>(1000);
-      public static OptionValue<SortingModeEnum> SortingMode { get; set; } = new OptionValue<SortingModeEnum>(SortingModeEnum.ByName);
-      public static OptionValue<string> ImageEditor { get; set; } = new OptionValue<string>("mspaint");
+      public static OptionValue<FormWindowState> MainWindowState { get; } = new OptionValue<FormWindowState>(FormWindowState.Normal);
+      public static OptionValue<int> ImageShowMilliSecs { get; } = new OptionValue<int>(1000);
+      public static OptionValue<SortingModeEnum> SortingMode { get; } = new OptionValue<SortingModeEnum>(SortingModeEnum.ByName);
+      public static OptionValue<string> ImageEditor { get; } = new OptionValue<string>("mspaint");
 
-      public static bool IsCustomized => ImageShowMilliSecs.IsCustomized || SortingMode.IsCustomized || ImageEditor.IsCustomized;
+      public static bool IsCustomized => ImageShowMilliSecs.IsCustomized || SortingMode.IsCustomized || ImageEditor.IsCustomized || MainWindowState.IsCustomized;
 
       public static void SaveToFile()
       {
@@ -23,7 +24,8 @@
             string[] lines = {
                ImageShowMilliSecs.Serialize(),
                SortingMode.Serialize(),
-               ImageEditor.Serialize()
+               ImageEditor.Serialize(),
+               MainWindowState.Serialize(),
             };
 
             File.WriteAllLines(SETTINGS_FILE, lines);
@@ -52,6 +54,11 @@
             if (lines.Length >= 3)
             {
                ImageEditor.Deserialize(lines[2]);
+            }
+
+            if (lines.Length >= 4)
+            {
+               MainWindowState.Deserialize(lines[3]);
             }
          }
          catch

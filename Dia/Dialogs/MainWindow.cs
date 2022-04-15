@@ -11,6 +11,10 @@ namespace Dia.Dialogs
          InitializeComponent();
 
          DiaOptions.LoadFromFile();
+         if (DiaOptions.MainWindowState.IsCustomized)
+         {
+            WindowState = DiaOptions.MainWindowState.CurrentValue;
+         }
 
          _diaController = new DiaController(OnLoadFile, initialFile);
          UpdateStatusBar();
@@ -192,6 +196,7 @@ namespace Dia.Dialogs
 
       private void OnClosing(object sender, FormClosingEventArgs e)
       {
+         DiaOptions.MainWindowState.CurrentValue = WindowState;
          if (DiaOptions.IsCustomized)
          {
             DiaOptions.SaveToFile();

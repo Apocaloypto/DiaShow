@@ -21,7 +21,21 @@
 
       public string Serialize()
       {
-         return CurrentValue?.ToString() ?? string.Empty;
+         if (typeof(T).IsEnum)
+         {
+            if (CurrentValue != null)
+            {
+               return ((int)(object)CurrentValue).ToString();
+            }
+            else
+            {
+               return string.Empty;
+            }
+         }
+         else
+         {
+            return CurrentValue?.ToString() ?? string.Empty;
+         }
       }
 
       public void Deserialize(string? input)
@@ -30,7 +44,15 @@
          {
             try
             {
-               CurrentValue = (T)Convert.ChangeType(input, typeof(T));
+               if (typeof(T).IsEnum)
+               {
+                  int valAsInt = Convert.ToInt32(input);
+                  CurrentValue = (T)(object)valAsInt;
+               }
+               else
+               {
+                  CurrentValue = (T)Convert.ChangeType(input, typeof(T));
+               }
                return;
             }
             catch
