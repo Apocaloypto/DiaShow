@@ -179,5 +179,13 @@ namespace Dia.Dialogs
       {
          _diaController.OpenCurrentImageInEditor();
       }
+
+      private void OnClickedOptions(object sender, EventArgs e)
+      {
+         using (var dlg = new GlobalOptions())
+         {
+            dlg.ShowDialog();
+         }
+      }
    }
 }
