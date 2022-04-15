@@ -1,6 +1,6 @@
 ﻿namespace Dia
 {
-   partial class Form1
+   partial class MainWindow
    {
       /// <summary>
       ///  Required designer variable.
@@ -28,7 +28,7 @@
       /// </summary>
       private void InitializeComponent()
       {
-         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
          this.thePicture = new System.Windows.Forms.PictureBox();
          this.menuStrip1 = new System.Windows.Forms.MenuStrip();
          this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,7 +119,7 @@
          this.diaControllerToolStripMenuItem.Text = "Dia-Controller";
          this.diaControllerToolStripMenuItem.Click += new System.EventHandler(this.OnClickedDiaController);
          // 
-         // Form1
+         // MainWindow
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -128,7 +128,7 @@
          this.Controls.Add(this.menuStrip1);
          this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
          this.MainMenuStrip = this.menuStrip1;
-         this.Name = "Form1";
+         this.Name = "MainWindow";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "Diashow";
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).EndInit();

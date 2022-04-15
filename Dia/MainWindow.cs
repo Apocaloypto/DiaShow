@@ -1,11 +1,11 @@
 namespace Dia
 {
-   public partial class Form1 : Form
+   public partial class MainWindow : Form
    {
       private DiaController _diaController;
       private ToolDiaControl? _diaControl;
 
-      public Form1(string? initialFile = null)
+      public MainWindow(string? initialFile = null)
       {
          InitializeComponent();
 
