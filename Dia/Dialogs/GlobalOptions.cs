@@ -18,7 +18,8 @@
       {
          OpenFileDialog ofd = new OpenFileDialog();
          ofd.Filter = "executables (*.exe)|*.exe|All files (*.*)|*.*";
-         if (ofd.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(ofd.FileName))
+         
+         if (ofd.ShowDialog(this) == DialogResult.OK && !string.IsNullOrEmpty(ofd.FileName))
          {
             tbxImageEditor.Text = ofd.FileName;
          }
