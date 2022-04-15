@@ -104,7 +104,7 @@
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
          this.Name = "ToolDiaControl";
          this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-         this.Text = "ToolDiaControl";
+         this.Text = "Diashow-Controller";
          this.tableLayoutPanel1.ResumeLayout(false);
          this.ResumeLayout(false);
 
