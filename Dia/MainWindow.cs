@@ -115,37 +115,61 @@ namespace Dia
          }
       }
 
+      private void SetDiaControlPosition(ToolDiaControl control)
+      {
+         const int SAFE_SPACE = 20;
+
+         control.Top = ((Top + Height) - control.Height) - SAFE_SPACE;
+         control.Left = ((Left + Width) - control.Width) - SAFE_SPACE;
+      }
+
       private void OnClickedDiaController(object sender, EventArgs e)
       {
          if (diaControllerToolStripMenuItem.Checked)
          {
             // Hide Dia-Control:
-            if (_diaControl != null)
-            {
-               _diaControl.FormClosed -= _diaControl_FormClosed;
-               _diaControl.Close();
-               _diaControl = null;
-            }
-
-            diaControllerToolStripMenuItem.Checked = false;
+            CloseDiaControlToolWindow();
          }
          else
          {
-            if (_diaControl == null)
-            {
-               _diaControl = new ToolDiaControl(_diaController);
-               _diaControl.FormClosed += _diaControl_FormClosed;
-               _diaControl.Show(this);
-            }
-
-            diaControllerToolStripMenuItem.Checked = true;
+            OpenDiaControlToolWindow();
          }
+      }
+
+      private void CloseDiaControlToolWindow()
+      {
+         if (_diaControl != null)
+         {
+            _diaControl.FormClosed -= _diaControl_FormClosed;
+            _diaControl.Close();
+            _diaControl = null;
+         }
+
+         diaControllerToolStripMenuItem.Checked = false;
+      }
+
+      private void OpenDiaControlToolWindow()
+      {
+         if (_diaControl == null)
+         {
+            _diaControl = new ToolDiaControl(_diaController);
+            _diaControl.FormClosed += _diaControl_FormClosed;
+            SetDiaControlPosition(_diaControl);
+            _diaControl.Show(this);
+         }
+
+         diaControllerToolStripMenuItem.Checked = true;
       }
 
       private void _diaControl_FormClosed(object? sender, FormClosedEventArgs e)
       {
          _diaControl = null;
          diaControllerToolStripMenuItem.Checked = false;
+      }
+
+      private void OnWindowShown(object sender, EventArgs e)
+      {
+         OpenDiaControlToolWindow();
       }
    }
 }

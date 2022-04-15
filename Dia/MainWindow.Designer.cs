@@ -150,6 +150,7 @@
          this.Name = "MainWindow";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "Diashow";
+         this.Shown += new System.EventHandler(this.OnWindowShown);
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).EndInit();
          this.menuStrip1.ResumeLayout(false);
          this.menuStrip1.PerformLayout();
