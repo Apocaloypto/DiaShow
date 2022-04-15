@@ -17,13 +17,28 @@ namespace Dia
 
       private void OnLoadFile(string filename)
       {
-         if (thePicture.Image != null)
+         Image? newImage = null;
+         try
          {
-            thePicture.Image.Dispose();
-            thePicture.Image = null;
+            newImage = Image.FromFile(filename);
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show($"Failed to load image '{filename}': {ex.Message}");
+            return;
          }
 
-         thePicture.Image = Image.FromFile(filename);
+         Image? oldImage = thePicture.Image;
+
+         if (newImage != null)
+         {
+            thePicture.Image = newImage;
+         }
+
+         if (oldImage != null)
+         {
+            oldImage.Dispose();
+         }
 
          UpdateStatusBar();
       }
