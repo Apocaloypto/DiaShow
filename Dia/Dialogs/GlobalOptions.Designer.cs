@@ -135,6 +135,7 @@
          this.ClientSize = new System.Drawing.Size(368, 97);
          this.Controls.Add(this.tableLayoutPanel1);
          this.Name = "GlobalOptions";
+         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
          this.Text = "Options";
          this.tableLayoutPanel1.ResumeLayout(false);
          this.tableLayoutPanel1.PerformLayout();

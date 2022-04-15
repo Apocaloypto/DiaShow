@@ -17,6 +17,7 @@
       private void OnBtnClickedSearchImageEditor(object sender, EventArgs e)
       {
          OpenFileDialog ofd = new OpenFileDialog();
+         ofd.Filter = "executable (*.exe)|*.exe|All files (*.*)|*.*";
          if (ofd.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(ofd.FileName))
          {
             tbxImageEditor.Text = ofd.FileName;
