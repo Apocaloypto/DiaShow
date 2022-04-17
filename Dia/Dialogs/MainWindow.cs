@@ -202,5 +202,17 @@ namespace Dia.Dialogs
             DiaOptions.SaveToFile();
          }
       }
+
+      private void OnKeyDown(object sender, KeyEventArgs e)
+      {
+         if (e.KeyCode == Keys.Right)
+         {
+            _diaController.NextImage();
+         }
+         else if (e.KeyCode == Keys.Left)
+         {
+            _diaController.PrevImage();
+         }
+      }
    }
 }

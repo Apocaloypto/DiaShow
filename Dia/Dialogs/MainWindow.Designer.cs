@@ -129,14 +129,14 @@
          // openInEditorToolStripMenuItem
          // 
          this.openInEditorToolStripMenuItem.Name = "openInEditorToolStripMenuItem";
-         this.openInEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.openInEditorToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
          this.openInEditorToolStripMenuItem.Text = "Open in Editor...";
          this.openInEditorToolStripMenuItem.Click += new System.EventHandler(this.OnClickedOpenInEditor);
          // 
          // optionsToolStripMenuItem
          // 
          this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-         this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.optionsToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
          this.optionsToolStripMenuItem.Text = "Options...";
          this.optionsToolStripMenuItem.Click += new System.EventHandler(this.OnClickedOptions);
          // 
@@ -170,6 +170,7 @@
          this.Text = "Diashow";
          this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnClosing);
          this.Shown += new System.EventHandler(this.OnWindowShown);
+         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).EndInit();
          this.menuStrip1.ResumeLayout(false);
          this.menuStrip1.PerformLayout();
