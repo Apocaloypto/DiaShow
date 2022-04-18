@@ -65,7 +65,7 @@ namespace Dia
             string? currentFile = GetCurrentImageFileName();
             if (!string.IsNullOrEmpty(currentFile))
             {
-               return $"\"{currentFile + 1}\"";
+               return $"\"{currentFile}\"";
             }
             else
             {
@@ -79,7 +79,7 @@ namespace Dia
          {
             if (_fileIndex.HasValue)
             {
-               return $"file {_fileIndex.Value}";
+               return $"file {_fileIndex.Value + 1}";
             }
             else
             {
