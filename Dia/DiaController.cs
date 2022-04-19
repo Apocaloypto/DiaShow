@@ -57,7 +57,25 @@ namespace Dia
       public bool HasValidContext { get; private set; }
 
       private string DirStatus => !string.IsNullOrEmpty(_dir) ? $"Directory: {_dir}" : string.Empty;
-      private string MatchingFileStatus => _matchingFilesInDir != null && _matchingFilesInDir.Any() ? $"{_matchingFilesInDir.Length} matching files" : string.Empty;
+      private string MatchingFileStatus
+      {
+         get
+         {
+            if (_matchingFilesInDir != null && _matchingFilesInDir.Any())
+            {
+               return $"{_matchingFilesInDir.Length} matching files";
+            }
+            else if (!string.IsNullOrEmpty(_dir))
+            {
+               return "0 matching files";
+            }
+            else
+            {
+               return string.Empty;
+            }
+         }
+      }
+
       private string FileStatus
       {
          get
