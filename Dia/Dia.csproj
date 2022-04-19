@@ -8,8 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
-    <AssemblyVersion>1.0.5.4</AssemblyVersion>
-    <FileVersion>1.0.5.4</FileVersion>
+    <AssemblyVersion>1.0.5.5</AssemblyVersion>
+    <FileVersion>1.0.5.5</FileVersion>
     <Authors>Marius Otto</Authors>
     <Description>A simple Diashow-Application</Description>
     <Copyright>(C) 2022 - Marius Otto</Copyright>
