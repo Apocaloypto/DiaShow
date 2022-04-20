@@ -27,6 +27,20 @@ namespace Dia
          }
       }
 
+      private DiaOptions.SortingModeEnum __sortingMode;
+      private DiaOptions.SortingModeEnum _sortingMode
+      {
+         get => __sortingMode;
+         set
+         {
+            if (__sortingMode != value)
+            {
+               __sortingMode = value;
+               ReloadMatchingFiles();
+            }
+         }
+      }
+
       private void ReloadMatchingFiles()
       {
          try
@@ -111,6 +125,7 @@ namespace Dia
       public DiaController(Action<string> loadFile, string? initialFile)
       {
          LoadFile = loadFile;
+         _sortingMode = DiaOptions.SortingMode.CurrentValue;
 
          if (!string.IsNullOrEmpty(initialFile))
          {
@@ -298,11 +313,13 @@ namespace Dia
 
       public void NextImage()
       {
+         _sortingMode = DiaOptions.SortingMode.CurrentValue;
          WithRestartingDia(LoadNextImage);
       }
 
       public void PrevImage()
       {
+         _sortingMode = DiaOptions.SortingMode.CurrentValue;
          WithRestartingDia(LoadPrevImage);
       }
 
