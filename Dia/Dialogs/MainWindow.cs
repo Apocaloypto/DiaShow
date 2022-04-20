@@ -6,6 +6,21 @@ namespace Dia.Dialogs
       private ToolDiaControl? _diaControl;
       private DockingManager? _dockingManager;
 
+      private string CurrentImageDimensions
+      {
+         get
+         {
+            if (thePicture.Image != null)
+            {
+               return $"{thePicture.Image.Width} x {thePicture.Image.Height} px";
+            }
+            else
+            {
+               return string.Empty;
+            }
+         }
+      }
+
       public MainWindow(string? initialFile = null)
       {
          InitializeComponent();
@@ -52,7 +67,7 @@ namespace Dia.Dialogs
 
       private void UpdateStatusBar()
       {
-         toolStripStatusLabel1.Text = _diaController?.StatusText;
+         toolStripStatusLabel1.Text = StringExtensions.JoinNotEmpty(", ", _diaController?.StatusText, CurrentImageDimensions);
          statusStrip1.Refresh();
       }
 

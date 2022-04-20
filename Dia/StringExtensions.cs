@@ -9,10 +9,10 @@ namespace Dia
          return builder.Length == 0;
       }
 
-      public static string JoinNotEmpty(string sep, params string[] values)
+      public static string JoinNotEmpty(string sep, params string?[] values)
       {
          StringBuilder retval = new StringBuilder();
-         foreach (string value in values)
+         foreach (string? value in values)
          {
             if (!string.IsNullOrEmpty(value))
             {
