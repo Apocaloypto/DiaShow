@@ -49,7 +49,7 @@ namespace Dia
             {
                var di = new DirectoryInfo(__dir);
                _matchingFilesInDir = di.GetFiles()
-                  .Where(file => POSSIBLE_EXTENSIONS.Contains(Path.GetExtension(file.FullName).ToUpper()))
+                  .FilterFileExtension(POSSIBLE_EXTENSIONS)
                   .ConsiderSortMode(DiaOptions.SortingMode.CurrentValue)
                   .Select(fi => fi.Name)
                   .ToArray();

@@ -25,6 +25,11 @@ namespace Dia
          return source.OrderBy(i => Regex.Replace(selector(i), @"\d+", m => m.Value.PadLeft(max, '0')));
       }
 
+      public static IEnumerable<FileInfo> FilterFileExtension(this IEnumerable<FileInfo> src, string[] extUpper)
+      {
+         return src.Where(file => extUpper.Contains(Path.GetExtension(file.FullName).ToUpper()));
+      }
+
       public static IEnumerable<FileInfo> ConsiderSortMode(this IEnumerable<FileInfo> src, DiaOptions.SortingModeEnum sortMode)
       {
          switch (sortMode)
