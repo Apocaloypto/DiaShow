@@ -5,7 +5,7 @@ namespace Dia
 {
    public class DiaController
    {
-      private readonly string[] POSSIBLE_EXTENSIONS = new string[] { ".BMP", ".JPG", ".JPEG", ".EXIF", ".PNG", ".TIFF", ".JFIF" };
+      private readonly string[] POSSIBLE_EXTENSIONS = new string[] { ".BMP", ".JPG", ".JPEG", ".EXIF", ".PNG", ".TIFF", ".JFIF", ".WEBP" };
 
       private string[]? _matchingFilesInDir;
 

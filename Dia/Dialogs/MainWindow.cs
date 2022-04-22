@@ -42,7 +42,7 @@ namespace Dia.Dialogs
          Image? newImage = null;
          try
          {
-            newImage = Image.FromFile(filename);
+            newImage = ImageLoader.Load(filename);
          }
          catch (Exception ex)
          {

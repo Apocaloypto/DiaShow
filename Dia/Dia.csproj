@@ -8,8 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
-    <AssemblyVersion>1.0.5.8</AssemblyVersion>
-    <FileVersion>1.0.5.8</FileVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <FileVersion>1.0.6.0</FileVersion>
     <Authors>Marius Otto</Authors>
     <Description>A simple Diashow-Application</Description>
     <Copyright>(C) 2022 - Marius Otto</Copyright>
@@ -18,6 +18,10 @@
 
   <ItemGroup>
     <Content Include="Resources\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WebP_Net" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
