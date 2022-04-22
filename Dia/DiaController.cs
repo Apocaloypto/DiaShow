@@ -49,9 +49,9 @@ namespace Dia
             {
                var di = new DirectoryInfo(__dir);
                _matchingFilesInDir = di.GetFiles()
-                  .Select(fi => fi.Name)
-                  .Where(name => POSSIBLE_EXTENSIONS.Contains(Path.GetExtension(name).ToUpper()))
+                  .Where(file => POSSIBLE_EXTENSIONS.Contains(Path.GetExtension(file.FullName).ToUpper()))
                   .ConsiderSortMode(DiaOptions.SortingMode.CurrentValue)
+                  .Select(fi => fi.Name)
                   .ToArray();
             }
          }

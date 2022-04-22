@@ -7,7 +7,8 @@
       public enum SortingModeEnum
       {
          ByName,
-         Random
+         Random,
+         ByCreationDate,
       }
 
       public static OptionValue<FormWindowState> MainWindowState { get; } = new OptionValue<FormWindowState>(FormWindowState.Normal);

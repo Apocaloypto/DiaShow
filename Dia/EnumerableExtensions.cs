@@ -25,14 +25,16 @@ namespace Dia
          return source.OrderBy(i => Regex.Replace(selector(i), @"\d+", m => m.Value.PadLeft(max, '0')));
       }
 
-      public static IEnumerable<string> ConsiderSortMode(this IEnumerable<string> src, DiaOptions.SortingModeEnum sortMode)
+      public static IEnumerable<FileInfo> ConsiderSortMode(this IEnumerable<FileInfo> src, DiaOptions.SortingModeEnum sortMode)
       {
          switch (sortMode)
          {
             case DiaOptions.SortingModeEnum.ByName:
-               return src.OrderByAlphaNumeric(str => str);
+               return src.OrderByAlphaNumeric(file => file.Name);
             case DiaOptions.SortingModeEnum.Random:
                return src.ShuffleIterator(new Random());
+            case DiaOptions.SortingModeEnum.ByCreationDate:
+               return src.OrderByDescending(file => file.CreationTime);
             default:
                return src;
          }
