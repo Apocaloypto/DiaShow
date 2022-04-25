@@ -4,6 +4,8 @@ namespace Dia
 {
    internal static class ImageLoader
    {
+      public static readonly string[] POSSIBLE_FORMATS = new string[] { ".BMP", ".JPG", ".JPEG", ".EXIF", ".PNG", ".TIFF", ".JFIF", ".WEBP" };
+
       private static bool CheckHeader(FileStream file, string header)
       {
          try
@@ -73,6 +75,16 @@ namespace Dia
          {
             return (Image)webp.GetImage().Clone();
          }
+      }
+
+      public static string[] GetMatchingFilesInDir(string dir)
+      {
+         var di = new DirectoryInfo(dir);
+         return di.GetFiles()
+            .FilterFileExtension(POSSIBLE_FORMATS)
+            .ConsiderSortMode(DiaOptions.SortingMode.CurrentValue)
+            .Select(fi => fi.Name)
+            .ToArray();
       }
 
       public static Image Load(string file)

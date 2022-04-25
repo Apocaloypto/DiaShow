@@ -5,8 +5,6 @@ namespace Dia
 {
    public class DiaController
    {
-      private readonly string[] POSSIBLE_EXTENSIONS = new string[] { ".BMP", ".JPG", ".JPEG", ".EXIF", ".PNG", ".TIFF", ".JFIF", ".WEBP" };
-
       private string[]? _matchingFilesInDir;
 
       private string? __dir;
@@ -43,16 +41,13 @@ namespace Dia
 
       private void ReloadMatchingFiles()
       {
+         _matchingFilesInDir = null;
+
          try
          {
             if (!string.IsNullOrEmpty(__dir))
             {
-               var di = new DirectoryInfo(__dir);
-               _matchingFilesInDir = di.GetFiles()
-                  .FilterFileExtension(POSSIBLE_EXTENSIONS)
-                  .ConsiderSortMode(DiaOptions.SortingMode.CurrentValue)
-                  .Select(fi => fi.Name)
-                  .ToArray();
+               _matchingFilesInDir = ImageLoader.GetMatchingFilesInDir(__dir);
             }
          }
          catch
