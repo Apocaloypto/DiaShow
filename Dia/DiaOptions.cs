@@ -6,14 +6,16 @@
 
       public enum SortingModeEnum
       {
-         ByName,
+         ByNameAscending,
+         ByNameDescending,
          Random,
-         ByCreationDate,
+         ByCreationDateAscending,
+         ByCreationDateDescending,
       }
 
       public static OptionValue<FormWindowState> MainWindowState { get; } = new OptionValue<FormWindowState>(FormWindowState.Normal);
       public static OptionValue<int> ImageShowMilliSecs { get; } = new OptionValue<int>(1000);
-      public static OptionValue<SortingModeEnum> SortingMode { get; } = new OptionValue<SortingModeEnum>(SortingModeEnum.ByName);
+      public static OptionValue<SortingModeEnum> SortingMode { get; } = new OptionValue<SortingModeEnum>(SortingModeEnum.ByNameAscending);
       public static OptionValue<string> ImageEditor { get; } = new OptionValue<string>("mspaint");
 
       public static bool IsCustomized => ImageShowMilliSecs.IsCustomized || SortingMode.IsCustomized || ImageEditor.IsCustomized || MainWindowState.IsCustomized;

@@ -16,13 +16,22 @@ namespace Dia
          }
       }
 
-      public static IOrderedEnumerable<T> OrderByAlphaNumeric<T>(this IEnumerable<T> source, Func<T, string> selector)
+      private static IOrderedEnumerable<T> OrderByAlphaNumeric<T>(this IEnumerable<T> source, Func<T, string> selector, bool asc)
       {
          int max = source
              .SelectMany(i => Regex.Matches(selector(i), @"\d+").Cast<Match>().Select(m => (int?)m.Value.Length))
              .Max() ?? 0;
 
-         return source.OrderBy(i => Regex.Replace(selector(i), @"\d+", m => m.Value.PadLeft(max, '0')));
+         Func<T, string> orderby = i => Regex.Replace(selector(i), @"\d+", m => m.Value.PadLeft(max, '0'));
+
+         if (asc)
+         {
+            return source.OrderBy(orderby);
+         }
+         else
+         {
+            return source.OrderByDescending(orderby);
+         }
       }
 
       public static IEnumerable<FileInfo> FilterFileExtension(this IEnumerable<FileInfo> src, string[] extUpper)
@@ -34,11 +43,15 @@ namespace Dia
       {
          switch (sortMode)
          {
-            case DiaOptions.SortingModeEnum.ByName:
-               return src.OrderByAlphaNumeric(file => file.Name);
+            case DiaOptions.SortingModeEnum.ByNameAscending:
+               return src.OrderByAlphaNumeric(file => file.Name, true);
+            case DiaOptions.SortingModeEnum.ByNameDescending:
+               return src.OrderByAlphaNumeric(file => file.Name, false);
             case DiaOptions.SortingModeEnum.Random:
                return src.ShuffleIterator(new Random());
-            case DiaOptions.SortingModeEnum.ByCreationDate:
+            case DiaOptions.SortingModeEnum.ByCreationDateAscending:
+               return src.OrderBy(file => file.CreationTime);
+            case DiaOptions.SortingModeEnum.ByCreationDateDescending:
                return src.OrderByDescending(file => file.CreationTime);
             default:
                return src;

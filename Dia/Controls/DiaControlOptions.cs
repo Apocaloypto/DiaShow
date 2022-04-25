@@ -16,9 +16,11 @@
 
       private IList<SortingModeViewModel> _sortingModeViewModels = new List<SortingModeViewModel>()
       {
-         new SortingModeViewModel("By name", DiaOptions.SortingModeEnum.ByName),
-         new SortingModeViewModel("Random", DiaOptions.SortingModeEnum.Random),
-         new SortingModeViewModel("By creation date", DiaOptions.SortingModeEnum.ByCreationDate),
+         new SortingModeViewModel("by name ascending", DiaOptions.SortingModeEnum.ByNameAscending),
+         new SortingModeViewModel("by name descending", DiaOptions.SortingModeEnum.ByNameDescending),
+         new SortingModeViewModel("random", DiaOptions.SortingModeEnum.Random),
+         new SortingModeViewModel("by creation date ascending", DiaOptions.SortingModeEnum.ByCreationDateAscending),
+         new SortingModeViewModel("by creation date descending", DiaOptions.SortingModeEnum.ByCreationDateDescending),
       };
 
       public DiaController? DiaController { get; set; }

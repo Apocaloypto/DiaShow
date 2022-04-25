@@ -44,7 +44,7 @@
          this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
          this.label1.Location = new System.Drawing.Point(3, 0);
          this.label1.Name = "label1";
-         this.label1.Size = new System.Drawing.Size(306, 26);
+         this.label1.Size = new System.Drawing.Size(94, 26);
          this.label1.TabIndex = 0;
          this.label1.Text = "Duration (ms):";
          this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -52,9 +52,9 @@
          // tbxDuration
          // 
          this.tbxDuration.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.tbxDuration.Location = new System.Drawing.Point(315, 3);
+         this.tbxDuration.Location = new System.Drawing.Point(103, 3);
          this.tbxDuration.Name = "tbxDuration";
-         this.tbxDuration.Size = new System.Drawing.Size(307, 23);
+         this.tbxDuration.Size = new System.Drawing.Size(519, 23);
          this.tbxDuration.TabIndex = 1;
          this.tbxDuration.TextChanged += new System.EventHandler(this.OnDurationChanged);
          // 
@@ -63,7 +63,7 @@
          this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
          this.label2.Location = new System.Drawing.Point(3, 26);
          this.label2.Name = "label2";
-         this.label2.Size = new System.Drawing.Size(306, 26);
+         this.label2.Size = new System.Drawing.Size(94, 26);
          this.label2.TabIndex = 4;
          this.label2.Text = "Sorting";
          this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -73,9 +73,9 @@
          this.cbxSortingMode.Dock = System.Windows.Forms.DockStyle.Fill;
          this.cbxSortingMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
          this.cbxSortingMode.FormattingEnabled = true;
-         this.cbxSortingMode.Location = new System.Drawing.Point(315, 29);
+         this.cbxSortingMode.Location = new System.Drawing.Point(103, 29);
          this.cbxSortingMode.Name = "cbxSortingMode";
-         this.cbxSortingMode.Size = new System.Drawing.Size(307, 23);
+         this.cbxSortingMode.Size = new System.Drawing.Size(519, 23);
          this.cbxSortingMode.TabIndex = 5;
          this.cbxSortingMode.SelectedIndexChanged += new System.EventHandler(this.OnSortmodeChanged);
          // 
@@ -96,8 +96,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
          this.tableLayoutPanel1.ColumnCount = 2;
-         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
          this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
          this.tableLayoutPanel1.Controls.Add(this.cbxSortingMode, 1, 1);
          this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
@@ -115,9 +115,9 @@
          // btnApply
          // 
          this.btnApply.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.btnApply.Location = new System.Drawing.Point(315, 55);
+         this.btnApply.Location = new System.Drawing.Point(103, 55);
          this.btnApply.Name = "btnApply";
-         this.btnApply.Size = new System.Drawing.Size(307, 24);
+         this.btnApply.Size = new System.Drawing.Size(519, 24);
          this.btnApply.TabIndex = 6;
          this.btnApply.Text = "Apply";
          this.btnApply.UseVisualStyleBackColor = true;
