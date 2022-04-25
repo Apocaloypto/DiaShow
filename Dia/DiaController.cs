@@ -72,7 +72,7 @@ namespace Dia
          {
             if (_matchingFilesInDir != null && _matchingFilesInDir.Any())
             {
-               return $"{_matchingFilesInDir.Length} matching files";
+               return $"{_matchingFilesInDir.Length:N0} matching files";
             }
             else if (!string.IsNullOrEmpty(_dir))
             {
