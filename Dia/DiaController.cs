@@ -47,7 +47,14 @@ namespace Dia
          {
             if (!string.IsNullOrEmpty(__dir))
             {
+               string? currentFile = GetCurrentImageFileName();
+
                _matchingFilesInDir = ImageLoader.GetMatchingFilesInDir(__dir);
+
+               if (!string.IsNullOrEmpty(currentFile))
+               {
+                  _fileIndex = Array.IndexOf(_matchingFilesInDir, currentFile);
+               }
             }
          }
          catch
@@ -242,6 +249,16 @@ namespace Dia
          }
       }
 
+      private void LoadFirstImage()
+      {
+         if (_fileIndex.HasValue && _matchingFilesInDir != null)
+         {
+            _fileIndex = 0;
+
+            LoadCurrentPicture();
+         }
+      }
+
       private void LoadPrevImage()
       {
          if (_fileIndex.HasValue && _matchingFilesInDir != null)
@@ -251,6 +268,16 @@ namespace Dia
             {
                _fileIndex = _matchingFilesInDir.Length - 1;
             }
+
+            LoadCurrentPicture();
+         }
+      }
+
+      private void LoadLastImage()
+      {
+         if (_fileIndex.HasValue && _matchingFilesInDir != null)
+         {
+            _fileIndex = _matchingFilesInDir.Length - 1;
 
             LoadCurrentPicture();
          }
@@ -304,6 +331,18 @@ namespace Dia
          {
             StartDiaShow();
          }
+      }
+
+      public void FirstImage()
+      {
+         _sortingMode = DiaOptions.SortingMode.CurrentValue;
+         WithRestartingDia(LoadFirstImage);
+      }
+
+      public void LastImage()
+      {
+         _sortingMode = DiaOptions.SortingMode.CurrentValue;
+         WithRestartingDia(LoadLastImage);
       }
 
       public void NextImage()
