@@ -29,6 +29,8 @@
          btnForwardFast.Enabled = enable;
          btnPlayPause.Enabled = enable;
          btnBackFast.Enabled = enable;
+         btnForward.Enabled = enable;
+         btnBack.Enabled = enable;
       }
 
       private void OnClickedPlayPause(object sender, EventArgs e)
