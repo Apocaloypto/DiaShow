@@ -43,6 +43,13 @@ namespace Dia.Dialogs
       private void _diaController_ContextChanged(bool validContext)
       {
          EnableStatusBarButtons(validContext);
+
+         if (!validContext && thePicture.Image != null)
+         {
+            var img = thePicture.Image;
+            thePicture.Image = null;
+            img.Dispose();
+         }
       }
 
       private void EnableStatusBarButtons(bool enable)
