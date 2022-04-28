@@ -32,9 +32,23 @@ namespace Dia.Dialogs
          }
 
          _diaController = new DiaController(OnLoadFile, initialFile);
+         EnableStatusBarButtons(_diaController.HasValidContext);
+         _diaController.ContextChanged += _diaController_ContextChanged;
+
          UpdateStatusBar();
 
          EnableNormalScreen();
+      }
+
+      private void _diaController_ContextChanged(bool validContext)
+      {
+         EnableStatusBarButtons(validContext);
+      }
+
+      private void EnableStatusBarButtons(bool enable)
+      {
+         toolStripSplitButtonFirst.Enabled = enable;
+         toolStripSplitButtonLast.Enabled = enable;
       }
 
       private void OnLoadFile(string filename)
@@ -228,6 +242,16 @@ namespace Dia.Dialogs
          {
             _diaController.PrevImage();
          }
+      }
+
+      private void OnClickFirstImage(object sender, EventArgs e)
+      {
+         _diaController.FirstImage();
+      }
+
+      private void OnClickLastImage(object sender, EventArgs e)
+      {
+         _diaController.LastImage();
       }
    }
 }

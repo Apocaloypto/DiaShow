@@ -34,68 +34,42 @@
       private void InitializeComponent()
       {
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToolDiaControl));
-         this.btnBackFast = new System.Windows.Forms.Button();
          this.btnPlayPause = new Dia.Controls.PlayPauseButton();
-         this.btnForwardFast = new System.Windows.Forms.Button();
          this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
          this.options1 = new Dia.Controls.DiaControlOptions();
-         this.btnBack = new System.Windows.Forms.Button();
          this.btnForward = new System.Windows.Forms.Button();
+         this.btnBack = new System.Windows.Forms.Button();
          this.tableLayoutPanel1.SuspendLayout();
          this.SuspendLayout();
-         // 
-         // btnBackFast
-         // 
-         this.btnBackFast.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.btnBackFast.Image = global::Dia.Properties.Resources.back;
-         this.btnBackFast.Location = new System.Drawing.Point(3, 115);
-         this.btnBackFast.Name = "btnBackFast";
-         this.btnBackFast.Size = new System.Drawing.Size(53, 24);
-         this.btnBackFast.TabIndex = 1;
-         this.btnBackFast.UseVisualStyleBackColor = true;
-         this.btnBackFast.Click += new System.EventHandler(this.OnBtnClickedPrevFast);
          // 
          // btnPlayPause
          // 
          this.btnPlayPause.Dock = System.Windows.Forms.DockStyle.Fill;
          this.btnPlayPause.IsPlaying = false;
-         this.btnPlayPause.Location = new System.Drawing.Point(121, 115);
+         this.btnPlayPause.Location = new System.Drawing.Point(102, 115);
          this.btnPlayPause.Name = "btnPlayPause";
          this.btnPlayPause.PauseImage = global::Dia.Properties.Resources.pause;
          this.btnPlayPause.PlayImage = global::Dia.Properties.Resources.play;
-         this.btnPlayPause.Size = new System.Drawing.Size(53, 24);
+         this.btnPlayPause.Size = new System.Drawing.Size(93, 24);
          this.btnPlayPause.TabIndex = 2;
          this.btnPlayPause.UseVisualStyleBackColor = true;
          this.btnPlayPause.Click += new System.EventHandler(this.OnClickedPlayPause);
-         // 
-         // btnForwardFast
-         // 
-         this.btnForwardFast.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.btnForwardFast.Image = global::Dia.Properties.Resources.forward;
-         this.btnForwardFast.Location = new System.Drawing.Point(239, 115);
-         this.btnForwardFast.Name = "btnForwardFast";
-         this.btnForwardFast.Size = new System.Drawing.Size(55, 24);
-         this.btnForwardFast.TabIndex = 3;
-         this.btnForwardFast.UseVisualStyleBackColor = true;
-         this.btnForwardFast.Click += new System.EventHandler(this.OnBtnClickedNextFast);
          // 
          // tableLayoutPanel1
          // 
          this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-         this.tableLayoutPanel1.ColumnCount = 5;
-         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-         this.tableLayoutPanel1.Controls.Add(this.btnForwardFast, 4, 1);
-         this.tableLayoutPanel1.Controls.Add(this.btnBackFast, 0, 1);
-         this.tableLayoutPanel1.Controls.Add(this.btnPlayPause, 2, 1);
+         this.tableLayoutPanel1.ColumnCount = 3;
+         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+         this.tableLayoutPanel1.Controls.Add(this.btnPlayPause, 1, 1);
          this.tableLayoutPanel1.Controls.Add(this.options1, 0, 0);
-         this.tableLayoutPanel1.Controls.Add(this.btnBack, 1, 1);
-         this.tableLayoutPanel1.Controls.Add(this.btnForward, 3, 1);
+         this.tableLayoutPanel1.Controls.Add(this.btnBack, 0, 1);
+         this.tableLayoutPanel1.Controls.Add(this.btnForward, 2, 1);
          this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
          this.tableLayoutPanel1.Name = "tableLayoutPanel1";
          this.tableLayoutPanel1.RowCount = 2;
@@ -106,7 +80,7 @@
          // 
          // options1
          // 
-         this.tableLayoutPanel1.SetColumnSpan(this.options1, 5);
+         this.tableLayoutPanel1.SetColumnSpan(this.options1, 3);
          this.options1.DiaController = null;
          this.options1.Dock = System.Windows.Forms.DockStyle.Fill;
          this.options1.Location = new System.Drawing.Point(3, 3);
@@ -114,27 +88,27 @@
          this.options1.Size = new System.Drawing.Size(291, 106);
          this.options1.TabIndex = 4;
          // 
-         // btnBack
-         // 
-         this.btnBack.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
-         this.btnBack.Location = new System.Drawing.Point(62, 115);
-         this.btnBack.Name = "btnBack";
-         this.btnBack.Size = new System.Drawing.Size(53, 24);
-         this.btnBack.TabIndex = 5;
-         this.btnBack.UseVisualStyleBackColor = true;
-         this.btnBack.Click += new System.EventHandler(this.OnBtnClickedPrev);
-         // 
          // btnForward
          // 
          this.btnForward.Dock = System.Windows.Forms.DockStyle.Fill;
          this.btnForward.Image = ((System.Drawing.Image)(resources.GetObject("btnForward.Image")));
-         this.btnForward.Location = new System.Drawing.Point(180, 115);
+         this.btnForward.Location = new System.Drawing.Point(201, 115);
          this.btnForward.Name = "btnForward";
-         this.btnForward.Size = new System.Drawing.Size(53, 24);
+         this.btnForward.Size = new System.Drawing.Size(93, 24);
          this.btnForward.TabIndex = 6;
          this.btnForward.UseVisualStyleBackColor = true;
          this.btnForward.Click += new System.EventHandler(this.OnBtnClickedNext);
+         // 
+         // btnBack
+         // 
+         this.btnBack.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
+         this.btnBack.Location = new System.Drawing.Point(3, 115);
+         this.btnBack.Name = "btnBack";
+         this.btnBack.Size = new System.Drawing.Size(93, 24);
+         this.btnBack.TabIndex = 5;
+         this.btnBack.UseVisualStyleBackColor = true;
+         this.btnBack.Click += new System.EventHandler(this.OnBtnClickedPrev);
          // 
          // ToolDiaControl
          // 
@@ -153,9 +127,7 @@
       }
 
       #endregion
-      private Button btnBackFast;
       private Controls.PlayPauseButton btnPlayPause;
-      private Button btnForwardFast;
       private TableLayoutPanel tableLayoutPanel1;
       private Controls.DiaControlOptions options1;
       private Button btnBack;

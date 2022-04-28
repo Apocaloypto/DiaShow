@@ -13,9 +13,14 @@
       /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
       protected override void Dispose(bool disposing)
       {
-         if (disposing && (components != null))
+         if (disposing)
          {
-            components.Dispose();
+            if (components != null)
+            {
+               components.Dispose();
+            }
+
+            _diaController.ContextChanged -= _diaController_ContextChanged;
          }
          base.Dispose(disposing);
       }
@@ -42,6 +47,8 @@
          this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.statusStrip1 = new System.Windows.Forms.StatusStrip();
          this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+         this.toolStripSplitButtonFirst = new System.Windows.Forms.ToolStripSplitButton();
+         this.toolStripSplitButtonLast = new System.Windows.Forms.ToolStripSplitButton();
          ((System.ComponentModel.ISupportInitialize)(this.thePicture)).BeginInit();
          this.menuStrip1.SuspendLayout();
          this.statusStrip1.SuspendLayout();
@@ -143,7 +150,9 @@
          // statusStrip1
          // 
          this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabel1,
+            this.toolStripSplitButtonFirst,
+            this.toolStripSplitButtonLast});
          this.statusStrip1.Location = new System.Drawing.Point(0, 562);
          this.statusStrip1.Name = "statusStrip1";
          this.statusStrip1.Size = new System.Drawing.Size(1017, 22);
@@ -154,6 +163,28 @@
          // 
          this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
          this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+         // 
+         // toolStripSplitButtonFirst
+         // 
+         this.toolStripSplitButtonFirst.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.toolStripSplitButtonFirst.DropDownButtonWidth = 0;
+         this.toolStripSplitButtonFirst.Image = global::Dia.Properties.Resources.back;
+         this.toolStripSplitButtonFirst.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.toolStripSplitButtonFirst.Name = "toolStripSplitButtonFirst";
+         this.toolStripSplitButtonFirst.Size = new System.Drawing.Size(21, 20);
+         this.toolStripSplitButtonFirst.Text = "toolStripSplitButton1";
+         this.toolStripSplitButtonFirst.ButtonClick += new System.EventHandler(this.OnClickFirstImage);
+         // 
+         // toolStripSplitButtonLast
+         // 
+         this.toolStripSplitButtonLast.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.toolStripSplitButtonLast.DropDownButtonWidth = 0;
+         this.toolStripSplitButtonLast.Image = global::Dia.Properties.Resources.forward;
+         this.toolStripSplitButtonLast.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.toolStripSplitButtonLast.Name = "toolStripSplitButtonLast";
+         this.toolStripSplitButtonLast.Size = new System.Drawing.Size(21, 20);
+         this.toolStripSplitButtonLast.Text = "toolStripSplitButton2";
+         this.toolStripSplitButtonLast.ButtonClick += new System.EventHandler(this.OnClickLastImage);
          // 
          // MainWindow
          // 
@@ -196,5 +227,7 @@
       private ToolStripMenuItem extrasToolStripMenuItem;
       private ToolStripMenuItem openInEditorToolStripMenuItem;
       private ToolStripMenuItem optionsToolStripMenuItem;
+      private ToolStripSplitButton toolStripSplitButtonFirst;
+      private ToolStripSplitButton toolStripSplitButtonLast;
    }
 }

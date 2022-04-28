@@ -26,9 +26,7 @@
 
       private void EnableButtons(bool enable)
       {
-         btnForwardFast.Enabled = enable;
          btnPlayPause.Enabled = enable;
-         btnBackFast.Enabled = enable;
          btnForward.Enabled = enable;
          btnBack.Enabled = enable;
       }
@@ -55,16 +53,6 @@
       private void OnBtnClickedPrev(object sender, EventArgs e)
       {
          _diaController.PrevImage();
-      }
-
-      private void OnBtnClickedNextFast(object sender, EventArgs e)
-      {
-         _diaController.LastImage();
-      }
-
-      private void OnBtnClickedPrevFast(object sender, EventArgs e)
-      {
-         _diaController.FirstImage();
       }
    }
 }
