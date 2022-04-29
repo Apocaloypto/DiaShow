@@ -10,9 +10,6 @@
 
       private double currentFactor = 1.0;
 
-      private System.Timers.Timer _zoomCooldownTimer;
-      private bool _zoomCooldown = false;
-
       public CustomPictureBox()
       {
          InitializeComponent();
@@ -27,14 +24,6 @@
 
          RegisterEvents(this);
          RegisterEvents(thePicture);
-
-         _zoomCooldownTimer = new System.Timers.Timer(ZOOM_COOLDOWN_MS);
-         _zoomCooldownTimer.Enabled = true;
-         _zoomCooldownTimer.Elapsed += (s, e) =>
-         {
-            _zoomCooldown = false;
-            _zoomCooldownTimer.Stop();
-         };
       }
 
       public void RegisterEvents(Control where)
@@ -54,26 +43,20 @@
 
       private void Where_MouseWheel(object? sender, MouseEventArgs e)
       {
-         if (ModifierKeys == Keys.Control && !_zoomCooldown)
+         if (ModifierKeys == Keys.Control)
          {
             int howMany = e.Delta * SystemInformation.MouseWheelScrollLines / 120;
             if (howMany > 0)
             {
                ZoomIn();
-               StartZoomCooldown();
+               ((HandledMouseEventArgs)e).Handled = true;
             }
             else if (howMany < 0)
             {
                ZoomOut();
-               StartZoomCooldown();
+               ((HandledMouseEventArgs)e).Handled = true;
             }
          }
-      }
-
-      private void StartZoomCooldown()
-      {
-         _zoomCooldown = true;
-         _zoomCooldownTimer.Start();
       }
 
       public string CurrentImageDimensions
