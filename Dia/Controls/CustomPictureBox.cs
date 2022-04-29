@@ -50,12 +50,33 @@
          if (newImage != null)
          {
             thePicture.Image = newImage;
+            InitialZoom();
          }
 
          if (oldImage != null)
          {
             oldImage.Dispose();
          }
+      }
+
+      public void InitialZoom()
+      {
+         const int ABZUG = 20;
+
+         if (thePicture.Image != null)
+         {
+            float rel = (float)thePicture.Image.Width / thePicture.Image.Height;
+
+            thePicture.Height = panSize.ClientSize.Height - ABZUG;
+            thePicture.Width = (int)(thePicture.Height * rel);
+
+            thePicture.Left = (int)(Width / 2.0 - thePicture.Width / 2.0);
+         }
+      }
+
+      public void Zoom(float factor)
+      {
+         // thePicture.Size = new Size(3000, 1500);
       }
    }
 }

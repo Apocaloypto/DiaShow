@@ -46,9 +46,6 @@
          // 
          // thePicture
          // 
-         this.thePicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
          this.thePicture.Location = new System.Drawing.Point(3, 3);
          this.thePicture.Name = "thePicture";
          this.thePicture.Size = new System.Drawing.Size(585, 316);
