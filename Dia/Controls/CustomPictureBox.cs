@@ -14,14 +14,6 @@
       {
          InitializeComponent();
 
-         var menu = new MenuStrip();
-         var item = new ToolStripMenuItem();
-         item.ShortcutKeys = Keys.Control | Keys.NumPad0;
-         item.Click += Where_InitialZoom;
-         menu.Items.Add(item);
-         menu.Visible = false;
-         this.Controls.Add(menu);
-
          RegisterEvents(this);
          RegisterEvents(thePicture);
       }
@@ -29,6 +21,14 @@
       public void RegisterEvents(Control where)
       {
          where.MouseWheel += Where_MouseWheel;
+
+         var menu = new MenuStrip();
+         var item = new ToolStripMenuItem();
+         item.ShortcutKeys = Keys.Control | Keys.NumPad0;
+         item.Click += Where_InitialZoom;
+         menu.Items.Add(item);
+         menu.Visible = false;
+         where.Controls.Add(menu);
       }
 
       public void UnregisterEvents(Control where)
