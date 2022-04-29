@@ -64,6 +64,7 @@
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.Controls.Add(this.panSize);
+         this.DoubleBuffered = true;
          this.Name = "CustomPictureBox";
          this.Size = new System.Drawing.Size(591, 322);
          this.panSize.ResumeLayout(false);
