@@ -20,6 +20,8 @@ namespace Dia.Dialogs
          EnableStatusBarButtons(_diaController.HasValidContext);
          _diaController.ContextChanged += _diaController_ContextChanged;
 
+         customPictureBox1.RegisterEvents(this);
+
          UpdateStatusBar();
 
          EnableNormalScreen();

@@ -15,6 +15,8 @@
       {
          if (disposing)
          {
+            customPictureBox1.UnregisterEvents(this);
+
             if (components != null)
             {
                components.Dispose();

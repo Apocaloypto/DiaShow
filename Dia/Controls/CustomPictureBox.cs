@@ -5,9 +5,75 @@
       private int _initialWidth;
       private int _initialHeight;
 
+      private const double FACTOR_MOD = 0.2;
+      private const int ZOOM_COOLDOWN_MS = 100;
+
+      private double currentFactor = 1.0;
+
+      private System.Timers.Timer _zoomCooldownTimer;
+      private bool _zoomCooldown = false;
+
       public CustomPictureBox()
       {
          InitializeComponent();
+
+         var menu = new MenuStrip();
+         var item = new ToolStripMenuItem();
+         item.ShortcutKeys = Keys.Control | Keys.NumPad0;
+         item.Click += Where_InitialZoom;
+         menu.Items.Add(item);
+         menu.Visible = false;
+         this.Controls.Add(menu);
+
+         RegisterEvents(this);
+         RegisterEvents(thePicture);
+
+         _zoomCooldownTimer = new System.Timers.Timer(ZOOM_COOLDOWN_MS);
+         _zoomCooldownTimer.Enabled = true;
+         _zoomCooldownTimer.Elapsed += (s, e) =>
+         {
+            _zoomCooldown = false;
+            _zoomCooldownTimer.Stop();
+         };
+      }
+
+      public void RegisterEvents(Control where)
+      {
+         where.MouseWheel += Where_MouseWheel;
+      }
+
+      public void UnregisterEvents(Control where)
+      {
+         where.MouseWheel -= Where_MouseWheel;
+      }
+
+      private void Where_InitialZoom(object? sender, EventArgs e)
+      {
+         InitialZoom();
+      }
+
+      private void Where_MouseWheel(object? sender, MouseEventArgs e)
+      {
+         if (ModifierKeys == Keys.Control && !_zoomCooldown)
+         {
+            int howMany = e.Delta * SystemInformation.MouseWheelScrollLines / 120;
+            if (howMany > 0)
+            {
+               ZoomIn();
+               StartZoomCooldown();
+            }
+            else if (howMany < 0)
+            {
+               ZoomOut();
+               StartZoomCooldown();
+            }
+         }
+      }
+
+      private void StartZoomCooldown()
+      {
+         _zoomCooldown = true;
+         _zoomCooldownTimer.Start();
       }
 
       public string CurrentImageDimensions
@@ -62,9 +128,9 @@
          }
       }
 
-      private void ResizeImageTo(float newHeight)
+      private void ResizeImageTo(double newHeight)
       {
-         float rel = (float)thePicture.Image.Width / thePicture.Image.Height;
+         double rel = (double)thePicture.Image.Width / thePicture.Image.Height;
 
          thePicture.Height = (int)newHeight;
          thePicture.Width = (int)(thePicture.Height * rel);
@@ -83,14 +149,34 @@
             _initialWidth = thePicture.Width;
             _initialHeight = thePicture.Height;
          }
+
+         currentFactor = 1.0;
       }
 
-      public void Zoom(float factor)
+      private void Zoom(double factor)
       {
          if (thePicture.Image != null)
          {
             ResizeImageTo(_initialHeight * factor);
+            currentFactor = factor;
          }
+      }
+
+      public void ZoomIn()
+      {
+         currentFactor += FACTOR_MOD;
+         Zoom(currentFactor);
+      }
+
+      public void ZoomOut()
+      {
+         currentFactor -= FACTOR_MOD;
+         if (currentFactor <= FACTOR_MOD)
+         {
+            currentFactor = FACTOR_MOD;
+         }
+
+         Zoom(currentFactor);
       }
    }
 }
