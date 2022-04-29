@@ -159,7 +159,7 @@ namespace Dia.Dialogs
       {
          if (_diaControl == null)
          {
-            _diaControl = new ToolDiaControl(_diaController);
+            _diaControl = new ToolDiaControl(_diaController, customPictureBox1);
             _diaControl.FormClosed += _diaControl_FormClosed;
             SetDiaControlPosition(_diaControl);
             _dockingManager = new DockingManager(this, _diaControl);

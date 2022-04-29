@@ -1,10 +1,14 @@
-﻿namespace Dia.Dialogs
+﻿using Dia.Controls;
+
+namespace Dia.Dialogs
 {
    public partial class ToolDiaControl : Form, IDisposable
    {
+      private readonly CustomPictureBox _pictureBox;
+
       private DiaController _diaController;
 
-      public ToolDiaControl(DiaController diaController)
+      public ToolDiaControl(DiaController diaController, CustomPictureBox pictureControl)
       {
          InitializeComponent();
 
@@ -17,6 +21,9 @@
          _diaController.ContextChanged += _diaController_ContextChanged;
 
          options1.DiaController = _diaController;
+
+         _pictureBox = pictureControl;
+         _pictureBox.RegisterEvents(this);
       }
 
       private void _diaController_ContextChanged(bool validContext)

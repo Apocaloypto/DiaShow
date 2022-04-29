@@ -15,6 +15,8 @@
       {
          if (disposing)
          {
+            _pictureBox.UnregisterEvents(this);
+
             if (components != null)
             {
                components.Dispose();
