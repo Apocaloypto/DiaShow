@@ -199,6 +199,7 @@
          this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnClosing);
          this.Shown += new System.EventHandler(this.OnWindowShown);
          this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+         this.Resize += new System.EventHandler(this.OnResize);
          this.menuStrip1.ResumeLayout(false);
          this.menuStrip1.PerformLayout();
          this.statusStrip1.ResumeLayout(false);

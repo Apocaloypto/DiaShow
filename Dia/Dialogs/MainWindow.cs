@@ -223,5 +223,10 @@ namespace Dia.Dialogs
       {
          _diaController.LastImage();
       }
+
+      private void OnResize(object sender, EventArgs e)
+      {
+         customPictureBox1.InitialZoom();
+      }
    }
 }
