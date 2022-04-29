@@ -6,21 +6,6 @@ namespace Dia.Dialogs
       private ToolDiaControl? _diaControl;
       private DockingManager? _dockingManager;
 
-      private string CurrentImageDimensions
-      {
-         get
-         {
-            if (thePicture.Image != null)
-            {
-               return $"{thePicture.Image.Width} x {thePicture.Image.Height} px";
-            }
-            else
-            {
-               return string.Empty;
-            }
-         }
-      }
-
       public MainWindow(string? initialFile = null)
       {
          InitializeComponent();
@@ -44,11 +29,9 @@ namespace Dia.Dialogs
       {
          EnableStatusBarButtons(validContext);
 
-         if (!validContext && thePicture.Image != null)
+         if (!validContext)
          {
-            var img = thePicture.Image;
-            thePicture.Image = null;
-            img.Dispose();
+            customPictureBox1.ClearImage();
          }
       }
 
@@ -60,35 +43,13 @@ namespace Dia.Dialogs
 
       private void OnLoadFile(string filename)
       {
-         Image? newImage = null;
-         try
-         {
-            newImage = ImageLoader.Load(filename);
-         }
-         catch (Exception ex)
-         {
-            MessageBox.Show($"Failed to load image '{filename}': {ex.Message}");
-            return;
-         }
-
-         Image? oldImage = thePicture.Image;
-
-         if (newImage != null)
-         {
-            thePicture.Image = newImage;
-         }
-
-         if (oldImage != null)
-         {
-            oldImage.Dispose();
-         }
-
+         customPictureBox1.LoadImage(filename);
          UpdateStatusBar();
       }
 
       private void UpdateStatusBar()
       {
-         toolStripStatusLabel1.Text = StringExtensions.JoinNotEmpty(", ", _diaController?.StatusText, CurrentImageDimensions);
+         toolStripStatusLabel1.Text = StringExtensions.JoinNotEmpty(", ", _diaController?.StatusText, customPictureBox1.CurrentImageDimensions);
          statusStrip1.Refresh();
       }
 

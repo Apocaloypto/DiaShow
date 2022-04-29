@@ -34,7 +34,6 @@
       private void InitializeComponent()
       {
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-         this.thePicture = new System.Windows.Forms.PictureBox();
          this.menuStrip1 = new System.Windows.Forms.MenuStrip();
          this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.openDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,22 +48,10 @@
          this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
          this.toolStripSplitButtonFirst = new System.Windows.Forms.ToolStripSplitButton();
          this.toolStripSplitButtonLast = new System.Windows.Forms.ToolStripSplitButton();
-         ((System.ComponentModel.ISupportInitialize)(this.thePicture)).BeginInit();
+         this.customPictureBox1 = new Dia.Controls.CustomPictureBox();
          this.menuStrip1.SuspendLayout();
          this.statusStrip1.SuspendLayout();
          this.SuspendLayout();
-         // 
-         // thePicture
-         // 
-         this.thePicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-         this.thePicture.Location = new System.Drawing.Point(12, 27);
-         this.thePicture.Name = "thePicture";
-         this.thePicture.Size = new System.Drawing.Size(993, 532);
-         this.thePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-         this.thePicture.TabIndex = 0;
-         this.thePicture.TabStop = false;
          // 
          // menuStrip1
          // 
@@ -186,13 +173,21 @@
          this.toolStripSplitButtonLast.Text = "toolStripSplitButton2";
          this.toolStripSplitButtonLast.ButtonClick += new System.EventHandler(this.OnClickLastImage);
          // 
+         // customPictureBox1
+         // 
+         this.customPictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.customPictureBox1.Location = new System.Drawing.Point(0, 24);
+         this.customPictureBox1.Name = "customPictureBox1";
+         this.customPictureBox1.Size = new System.Drawing.Size(1017, 538);
+         this.customPictureBox1.TabIndex = 3;
+         // 
          // MainWindow
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(1017, 584);
+         this.Controls.Add(this.customPictureBox1);
          this.Controls.Add(this.statusStrip1);
-         this.Controls.Add(this.thePicture);
          this.Controls.Add(this.menuStrip1);
          this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
          this.MainMenuStrip = this.menuStrip1;
@@ -202,7 +197,6 @@
          this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnClosing);
          this.Shown += new System.EventHandler(this.OnWindowShown);
          this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
-         ((System.ComponentModel.ISupportInitialize)(this.thePicture)).EndInit();
          this.menuStrip1.ResumeLayout(false);
          this.menuStrip1.PerformLayout();
          this.statusStrip1.ResumeLayout(false);
@@ -213,8 +207,6 @@
       }
 
       #endregion
-
-      private PictureBox thePicture;
       private MenuStrip menuStrip1;
       private ToolStripMenuItem fileToolStripMenuItem;
       private ToolStripMenuItem openDirToolStripMenuItem;
@@ -229,5 +221,6 @@
       private ToolStripMenuItem optionsToolStripMenuItem;
       private ToolStripSplitButton toolStripSplitButtonFirst;
       private ToolStripSplitButton toolStripSplitButtonLast;
+      private Controls.CustomPictureBox customPictureBox1;
    }
 }
