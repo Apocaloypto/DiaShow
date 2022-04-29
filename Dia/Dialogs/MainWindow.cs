@@ -44,7 +44,6 @@ namespace Dia.Dialogs
       private void OnLoadFile(string filename)
       {
          customPictureBox1.LoadImage(filename);
-         customPictureBox1.Zoom(20);
          UpdateStatusBar();
       }
 

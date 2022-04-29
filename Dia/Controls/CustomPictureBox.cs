@@ -2,6 +2,9 @@
 {
    public partial class CustomPictureBox : UserControl
    {
+      private int _initialWidth;
+      private int _initialHeight;
+
       public CustomPictureBox()
       {
          InitializeComponent();
@@ -59,24 +62,35 @@
          }
       }
 
+      private void ResizeImageTo(float newHeight)
+      {
+         float rel = (float)thePicture.Image.Width / thePicture.Image.Height;
+
+         thePicture.Height = (int)newHeight;
+         thePicture.Width = (int)(thePicture.Height * rel);
+
+         thePicture.Left = (int)(Width / 2.0 - thePicture.Width / 2.0);
+      }
+
       public void InitialZoom()
       {
          const int ABZUG = 20;
 
          if (thePicture.Image != null)
          {
-            float rel = (float)thePicture.Image.Width / thePicture.Image.Height;
+            ResizeImageTo(panSize.ClientSize.Height - ABZUG);
 
-            thePicture.Height = panSize.ClientSize.Height - ABZUG;
-            thePicture.Width = (int)(thePicture.Height * rel);
-
-            thePicture.Left = (int)(Width / 2.0 - thePicture.Width / 2.0);
+            _initialWidth = thePicture.Width;
+            _initialHeight = thePicture.Height;
          }
       }
 
       public void Zoom(float factor)
       {
-         // thePicture.Size = new Size(3000, 1500);
+         if (thePicture.Image != null)
+         {
+            ResizeImageTo(_initialHeight * factor);
+         }
       }
    }
 }
