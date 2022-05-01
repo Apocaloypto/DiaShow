@@ -364,7 +364,7 @@ namespace Dia
             string? currentFile = GetCurrentImageFilePath();
             if (!string.IsNullOrEmpty(currentFile))
             {
-               Process.Start(DiaOptions.ImageEditor.CurrentValue, currentFile);
+               Process.Start(DiaOptions.ImageEditor.CurrentValue, $"\"{currentFile}\"");
             }
          }
       }
