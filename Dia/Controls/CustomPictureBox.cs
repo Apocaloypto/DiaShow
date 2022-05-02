@@ -25,10 +25,11 @@
          where.MouseWheel += Where_MouseWheel;
 
          var menu = new MenuStrip();
-         var item = new ToolStripMenuItem();
-         item.ShortcutKeys = Keys.Control | Keys.NumPad0;
-         item.Click += Where_InitialZoom;
-         menu.Items.Add(item);
+
+         HotKeyHelper.AddHotkey(menu, Keys.Control | Keys.NumPad0, Where_InitialZoom);
+         HotKeyHelper.AddHotkey(menu, Keys.Control | Keys.Add, Where_ZoomIn);
+         HotKeyHelper.AddHotkey(menu, Keys.Control | Keys.Subtract, Where_ZoomOut);
+
          menu.Visible = false;
          where.Controls.Add(menu);
       }
@@ -41,6 +42,16 @@
       private void Where_InitialZoom(object? sender, EventArgs e)
       {
          InitialZoom();
+      }
+
+      private void Where_ZoomIn(object? sender, EventArgs e)
+      {
+         ZoomIn();
+      }
+
+      private void Where_ZoomOut(object? sender, EventArgs e)
+      {
+         ZoomOut();
       }
 
       private void Where_MouseWheel(object? sender, MouseEventArgs e)
