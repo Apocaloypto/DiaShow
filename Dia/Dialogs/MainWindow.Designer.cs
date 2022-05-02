@@ -192,13 +192,13 @@
          this.Controls.Add(this.statusStrip1);
          this.Controls.Add(this.menuStrip1);
          this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+         this.KeyPreview = true;
          this.MainMenuStrip = this.menuStrip1;
          this.Name = "MainWindow";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "Diashow";
          this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnClosing);
          this.Shown += new System.EventHandler(this.OnWindowShown);
-         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
          this.Resize += new System.EventHandler(this.OnResize);
          this.menuStrip1.ResumeLayout(false);
          this.menuStrip1.PerformLayout();

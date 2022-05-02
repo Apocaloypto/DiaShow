@@ -10,6 +10,8 @@
 
       private double currentFactor = 1.0;
 
+      public bool IsZoomed => currentFactor != 1.0;
+
       public CustomPictureBox()
       {
          InitializeComponent();

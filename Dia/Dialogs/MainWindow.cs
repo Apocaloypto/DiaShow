@@ -202,16 +202,22 @@ namespace Dia.Dialogs
          }
       }
 
-      private void OnKeyDown(object sender, KeyEventArgs e)
+      protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
       {
-         if (e.KeyCode == Keys.Right)
+         if (!customPictureBox1.IsZoomed)
          {
-            _diaController.NextImage();
+            switch (keyData)
+            {
+               case Keys.Left:
+                  _diaController.PrevImage();
+                  return true;
+               case Keys.Right:
+                  _diaController.NextImage();
+                  return true;
+            }
          }
-         else if (e.KeyCode == Keys.Left)
-         {
-            _diaController.PrevImage();
-         }
+
+         return base.ProcessCmdKey(ref msg, keyData);
       }
 
       private void OnClickFirstImage(object sender, EventArgs e)
