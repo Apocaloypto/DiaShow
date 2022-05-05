@@ -176,15 +176,10 @@ namespace Dia
 
       public string StatusText => StringExtensions.JoinNotEmpty(", ", DirStatus, MatchingFileStatus, FileNumberStatus, FileStatus);
 
-      public DiaController(Action<string> loadFile, string? initialFile)
+      public DiaController(Action<string> loadFile)
       {
          LoadFile = loadFile;
          _sortingMode = DiaOptions.SortingMode.CurrentValue;
-
-         if (!string.IsNullOrEmpty(initialFile))
-         {
-            SetContext_File(initialFile);
-         }
       }
 
       private void TrySetFile()

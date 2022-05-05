@@ -6,6 +6,8 @@ namespace Dia.Dialogs
       private ChildWindow<ToolDiaControl> _diaControl;
       private ChildWindow<ImageList> _imageList;
 
+      private string? _initialFile;
+
       public MainWindow(string? initialFile = null)
       {
          InitializeComponent();
@@ -16,14 +18,14 @@ namespace Dia.Dialogs
             WindowState = DiaOptions.MainWindowState.CurrentValue;
          }
 
-         _diaController = new DiaController(OnLoadFile, initialFile);
+         _diaController = new DiaController(OnLoadFile);
          EnableStatusBarButtons(_diaController.HasValidContext);
          _diaController.ContextChanged += _diaController_ContextChanged;
 
          _diaControl = new ChildWindow<ToolDiaControl>(
-            diaControllerToolStripMenuItem, 
-            this, 
-            () => new ToolDiaControl(_diaController, customPictureBox1), 
+            diaControllerToolStripMenuItem,
+            this,
+            () => new ToolDiaControl(_diaController, customPictureBox1),
             SetDiaControlPosition,
             DockingManager.DockToEnum.BottomRight
          );
@@ -41,6 +43,8 @@ namespace Dia.Dialogs
          UpdateStatusBar();
 
          EnableNormalScreen();
+
+         _initialFile = initialFile;
       }
 
       private void _diaController_ContextChanged(bool validContext)
@@ -160,6 +164,12 @@ namespace Dia.Dialogs
 
       private void OnWindowShown(object sender, EventArgs e)
       {
+         if (!string.IsNullOrEmpty(_initialFile))
+         {
+            _diaController.SetContext_File(_initialFile);
+            _initialFile = null;
+         }
+
          _diaControl.ShowChildWindow();
       }
 
