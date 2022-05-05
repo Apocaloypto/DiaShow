@@ -55,6 +55,8 @@ namespace Dia
                {
                   FileIndex = Array.IndexOf(MatchingFilesInDir, currentFile);
                }
+
+               MatchingFilesReloaded?.Invoke();
             }
          }
          catch
@@ -109,6 +111,7 @@ namespace Dia
 
       public event Action<string> LoadFile;
       public event Action<bool>? ContextChanged;
+      public event Action? MatchingFilesReloaded;
 
       public bool IsPlaying => _diaTimer != null;
       public bool HasValidContext { get; private set; }

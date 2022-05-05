@@ -29,6 +29,7 @@
       private void InitializeComponent()
       {
          this.lstImages = new System.Windows.Forms.ListView();
+         this.colTitle = new System.Windows.Forms.ColumnHeader();
          this.SuspendLayout();
          // 
          // lstImages
@@ -36,6 +37,8 @@
          this.lstImages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+         this.lstImages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colTitle});
          this.lstImages.FullRowSelect = true;
          this.lstImages.Location = new System.Drawing.Point(12, 12);
          this.lstImages.MultiSelect = false;
@@ -43,7 +46,12 @@
          this.lstImages.Size = new System.Drawing.Size(248, 490);
          this.lstImages.TabIndex = 0;
          this.lstImages.UseCompatibleStateImageBehavior = false;
-         this.lstImages.View = System.Windows.Forms.View.List;
+         this.lstImages.View = System.Windows.Forms.View.Details;
+         // 
+         // colTitle
+         // 
+         this.colTitle.Text = "File";
+         this.colTitle.Width = 244;
          // 
          // ImageList
          // 
@@ -62,5 +70,6 @@
       #endregion
 
       private ListView lstImages;
+      private ColumnHeader colTitle;
    }
 }

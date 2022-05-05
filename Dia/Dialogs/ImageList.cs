@@ -9,20 +9,20 @@
          InitializeComponent();
 
          _diaController = diaController;
-         _diaController.ContextChanged += _diaController_ContextChanged;
+         _diaController.MatchingFilesReloaded += _diaController_MatchingFilesReloaded;
          _diaController.LoadFile += _diaController_LoadFile;
 
+         InitializeList();
+      }
+
+      private void _diaController_MatchingFilesReloaded()
+      {
          InitializeList();
       }
 
       private void _diaController_LoadFile(string file)
       {
          SetListViewSelection();
-      }
-
-      private void _diaController_ContextChanged(bool validContext)
-      {
-         InitializeList();
       }
 
       private void InitializeList()
@@ -48,6 +48,7 @@
          if (lvi != null)
          {
             lvi.Selected = true;
+            lvi.EnsureVisible();
             lstImages.Select();
          }
       }
