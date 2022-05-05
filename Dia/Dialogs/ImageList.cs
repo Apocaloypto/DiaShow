@@ -17,12 +17,18 @@
 
       private void _diaController_MatchingFilesReloaded()
       {
-         InitializeList();
+         Invoke(() =>
+         {
+            InitializeList();
+         });
       }
 
       private void _diaController_LoadFile(string file)
       {
-         SetListViewSelection();
+         Invoke(() =>
+         {
+            SetListViewSelection();
+         });
       }
 
       private void InitializeList()
@@ -50,6 +56,18 @@
             lvi.Selected = true;
             lvi.EnsureVisible();
             lstImages.Select();
+         }
+      }
+
+      private void OnClick(object sender, EventArgs e)
+      {
+         if (lstImages.SelectedItems.Count >= 1)
+         {
+            ListViewItem selected = lstImages.SelectedItems[0];
+            if (selected != null && !string.IsNullOrEmpty(selected.Text))
+            {
+               _diaController.TrySetCurrentFile(selected.Text);
+            }
          }
       }
    }

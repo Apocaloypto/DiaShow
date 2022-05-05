@@ -45,12 +45,15 @@ namespace Dia.Dialogs
 
       private void _diaController_ContextChanged(bool validContext)
       {
-         EnableStatusBarButtons(validContext);
-
-         if (!validContext)
+         Invoke(() =>
          {
-            customPictureBox1.ClearImage();
-         }
+            EnableStatusBarButtons(validContext);
+
+            if (!validContext)
+            {
+               customPictureBox1.ClearImage();
+            }
+         });
       }
 
       private void EnableStatusBarButtons(bool enable)
@@ -61,8 +64,11 @@ namespace Dia.Dialogs
 
       private void OnLoadFile(string filename)
       {
-         customPictureBox1.LoadImage(filename);
-         UpdateStatusBar();
+         Invoke(() =>
+         {
+            customPictureBox1.LoadImage(filename);
+            UpdateStatusBar();
+         });
       }
 
       private void UpdateStatusBar()

@@ -28,7 +28,10 @@ namespace Dia.Dialogs
 
       private void _diaController_ContextChanged(bool validContext)
       {
-         EnableButtons(validContext);
+         Invoke(() =>
+         {
+            EnableButtons(validContext);
+         });
       }
 
       private void EnableButtons(bool enable)

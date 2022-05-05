@@ -64,6 +64,14 @@ namespace Dia
          }
       }
 
+      public void TrySetCurrentFile(string filename)
+      {
+         if (MatchingFilesInDir != null)
+         {
+            FileIndex = Array.IndexOf(MatchingFilesInDir, filename);
+         }
+      }
+
       private int? _fileIndex;
       public int? FileIndex
       {
@@ -218,14 +226,8 @@ namespace Dia
          string? currentFilePath = GetCurrentImageFilePath();
          if (!string.IsNullOrEmpty(currentFilePath))
          {
-            try
-            {
-               LoadFile.Invoke(currentFilePath);
-               return true;
-            }
-            catch
-            {
-            }
+            LoadFile.Invoke(currentFilePath);
+            return true;
          }
 
          return false;

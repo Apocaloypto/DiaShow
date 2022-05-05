@@ -53,6 +53,7 @@
          this.lstImages.TabIndex = 0;
          this.lstImages.UseCompatibleStateImageBehavior = false;
          this.lstImages.View = System.Windows.Forms.View.Details;
+         this.lstImages.Click += new System.EventHandler(this.OnClick);
          // 
          // colTitle
          // 
