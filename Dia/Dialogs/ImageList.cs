@@ -42,9 +42,12 @@
 
       private void SetListViewSelection()
       {
-         if (_diaController.FileIndex.HasValue && _diaController.FileIndex.Value >= 0 && _diaController.FileIndex.Value < lstImages.Items.Count)
+         lstImages.SelectedIndices.Clear();
+
+         ListViewItem lvi = lstImages.FindItemWithText(_diaController.CurrentImageFileName);
+         if (lvi != null)
          {
-            lstImages.Items[_diaController.FileIndex.Value].Selected = true;
+            lvi.Selected = true;
             lstImages.Select();
          }
       }

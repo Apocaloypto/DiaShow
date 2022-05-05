@@ -47,7 +47,7 @@ namespace Dia
          {
             if (!string.IsNullOrEmpty(_dir))
             {
-               string? currentFile = GetCurrentImageFileName();
+               string? currentFile = CurrentImageFileName;
 
                MatchingFilesInDir = ImageLoader.GetMatchingFilesInDir(_dir);
 
@@ -90,6 +90,21 @@ namespace Dia
          }
       }
 
+      public string? CurrentImageFileName
+      {
+         get
+         {
+            if (FileIndex.HasValue && !string.IsNullOrEmpty(Dir) && MatchingFilesInDir != null)
+            {
+               return MatchingFilesInDir[FileIndex.Value];
+            }
+            else
+            {
+               return null;
+            }
+         }
+      }
+
       private System.Timers.Timer? _diaTimer;
 
       public event Action<string> LoadFile;
@@ -122,7 +137,7 @@ namespace Dia
       {
          get
          {
-            string? currentFile = GetCurrentImageFileName();
+            string? currentFile = CurrentImageFileName;
             if (!string.IsNullOrEmpty(currentFile))
             {
                return $"\"{currentFile}\"";
@@ -182,21 +197,9 @@ namespace Dia
          }
       }
 
-      private string? GetCurrentImageFileName()
-      {
-         if (FileIndex.HasValue && !string.IsNullOrEmpty(Dir) && MatchingFilesInDir != null)
-         {
-            return MatchingFilesInDir[FileIndex.Value];
-         }
-         else
-         {
-            return null;
-         }
-      }
-
       private string? GetCurrentImageFilePath()
       {
-         string? currentFileName = GetCurrentImageFileName();
+         string? currentFileName = CurrentImageFileName;
          if (Dir != null && !string.IsNullOrEmpty(currentFileName))
          {
             return Path.Combine(Dir, currentFileName);
