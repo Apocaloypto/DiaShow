@@ -189,7 +189,6 @@
          this.imageQueueToolStripMenuItem.Name = "imageQueueToolStripMenuItem";
          this.imageQueueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
          this.imageQueueToolStripMenuItem.Text = "Image Queue";
-         this.imageQueueToolStripMenuItem.Click += new System.EventHandler(this.OnClickedImageQueue);
          // 
          // MainWindow
          // 

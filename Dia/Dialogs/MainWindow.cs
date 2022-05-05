@@ -24,14 +24,16 @@ namespace Dia.Dialogs
             diaControllerToolStripMenuItem, 
             this, 
             () => new ToolDiaControl(_diaController, customPictureBox1), 
-            (diaControl) => { SetDiaControlPosition(diaControl); }
+            SetDiaControlPosition,
+            DockingManager.DockToEnum.BottomRight
          );
 
          _imageList = new ChildWindow<ImageList>(
             imageQueueToolStripMenuItem,
             this,
             () => new ImageList(),
-            (_) => { }
+            SetImageListPosition,
+            DockingManager.DockToEnum.TopLeft
          );
 
          customPictureBox1.RegisterEvents(this);
@@ -142,16 +144,12 @@ namespace Dia.Dialogs
          control.Left = ((Left + Width) - control.Width) - SAFE_SPACE;
       }
 
-      private void OnClickedImageQueue(object sender, EventArgs e)
+      private void SetImageListPosition(ImageList control)
       {
-         ImageList imgList = new ImageList();
-         imgList.ShowDialog();
-      }
+         const int SAFE_SPACE = 20;
 
-      private void _diaControl_FormClosed(object? sender, FormClosedEventArgs e)
-      {
-         _diaControl = null;
-         diaControllerToolStripMenuItem.Checked = false;
+         control.Top = Top + SAFE_SPACE + SAFE_SPACE + SAFE_SPACE;
+         control.Left = Left + SAFE_SPACE;
       }
 
       private void OnWindowShown(object sender, EventArgs e)

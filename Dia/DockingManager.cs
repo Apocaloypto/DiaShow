@@ -2,18 +2,27 @@
 {
    internal class DockingManager : IDisposable
    {
+      public enum DockToEnum
+      {
+         TopLeft,
+         BottomRight,
+      }
+
       private readonly Form _parent;
       private readonly Form _child;
+
+      private readonly DockToEnum _dockTo;
 
       private int _offsetx;
       private int _offsety;
 
       private bool _childsPositionValid = true;
 
-      public DockingManager(Form parent, Form child)
+      public DockingManager(Form parent, Form child, DockToEnum dockTo)
       {
          _parent = parent;
          _child = child;
+         _dockTo = dockTo;
 
          StoreChildsOffset();
          _parent.Move += OnParentMove;
@@ -32,8 +41,16 @@
       {
          if (_childsPositionValid)
          {
-            _offsetx = (_parent.Left + _parent.Width) - _child.Left;
-            _offsety = (_parent.Top + _parent.Height) - _child.Top;
+            if (_dockTo == DockToEnum.BottomRight)
+            {
+               _offsetx = (_parent.Left + _parent.Width) - _child.Left;
+               _offsety = (_parent.Top + _parent.Height) - _child.Top;
+            }
+            else if (_dockTo == DockToEnum.TopLeft)
+            {
+               _offsetx = _child.Left - _parent.Left;
+               _offsety = _child.Top - _parent.Top;
+            }
          }
       }
 
@@ -46,8 +63,16 @@
       {
          _childsPositionValid = false;
 
-         _child.Left = (_parent.Left + _parent.Width) - _offsetx;
-         _child.Top = (_parent.Top + _parent.Height) - _offsety;
+         if (_dockTo == DockToEnum.BottomRight)
+         {
+            _child.Left = (_parent.Left + _parent.Width) - _offsetx;
+            _child.Top = (_parent.Top + _parent.Height) - _offsety;
+         }
+         else if (_dockTo == DockToEnum.TopLeft)
+         {
+            _child.Left = _parent.Left + _offsetx;
+            _child.Top = _parent.Top + _offsety;
+         }
 
          _childsPositionValid = true;
       }

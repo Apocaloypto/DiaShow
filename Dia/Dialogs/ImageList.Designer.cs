@@ -53,6 +53,7 @@
          this.Controls.Add(this.lstImages);
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
          this.Name = "ImageList";
+         this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
          this.Text = "Image Queue";
          this.ResumeLayout(false);
 

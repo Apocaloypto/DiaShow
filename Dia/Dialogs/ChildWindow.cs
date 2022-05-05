@@ -9,13 +9,15 @@
 
       private TChild? _childWnd;
       private DockingManager? _childsDockingManager;
+      private DockingManager.DockToEnum _dockTo;
 
-      public ChildWindow(ToolStripMenuItem toolStripOption, Form parent, Func<TChild> childFactory, Action<TChild>? startPositionSetter)
+      public ChildWindow(ToolStripMenuItem toolStripOption, Form parent, Func<TChild> childFactory, Action<TChild>? startPositionSetter, DockingManager.DockToEnum dockTo)
       {
          _toolStripOption = toolStripOption;
          _parent = parent;
          _childFactory = childFactory;
          _startPositionSetter = startPositionSetter;
+         _dockTo = dockTo;
 
          _toolStripOption.Click += _toolStripOption_Click;
       }
@@ -39,7 +41,7 @@
             _childWnd = _childFactory.Invoke();
             _childWnd.FormClosed += _childWnd_FormClosed;
             _startPositionSetter?.Invoke(_childWnd);
-            _childsDockingManager = new DockingManager(_parent, _childWnd);
+            _childsDockingManager = new DockingManager(_parent, _childWnd, _dockTo);
             _childWnd.Show(_parent);
          }
 
