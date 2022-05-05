@@ -4,6 +4,7 @@ namespace Dia.Dialogs
    {
       private DiaController _diaController;
       private ChildWindow<ToolDiaControl> _diaControl;
+      private ChildWindow<ImageList> _imageList;
 
       public MainWindow(string? initialFile = null)
       {
@@ -20,10 +21,17 @@ namespace Dia.Dialogs
          _diaController.ContextChanged += _diaController_ContextChanged;
 
          _diaControl = new ChildWindow<ToolDiaControl>(
-            diashowToolStripMenuItem, 
+            diaControllerToolStripMenuItem, 
             this, 
             () => new ToolDiaControl(_diaController, customPictureBox1), 
             (diaControl) => { SetDiaControlPosition(diaControl); }
+         );
+
+         _imageList = new ChildWindow<ImageList>(
+            imageQueueToolStripMenuItem,
+            this,
+            () => new ImageList(),
+            (_) => { }
          );
 
          customPictureBox1.RegisterEvents(this);
