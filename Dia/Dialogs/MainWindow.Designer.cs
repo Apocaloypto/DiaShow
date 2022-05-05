@@ -51,6 +51,7 @@
          this.toolStripSplitButtonFirst = new System.Windows.Forms.ToolStripSplitButton();
          this.toolStripSplitButtonLast = new System.Windows.Forms.ToolStripSplitButton();
          this.customPictureBox1 = new Dia.Controls.CustomPictureBox();
+         this.imageQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.menuStrip1.SuspendLayout();
          this.statusStrip1.SuspendLayout();
          this.SuspendLayout();
@@ -94,7 +95,8 @@
          // 
          this.diashowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fullScreenToolStripMenuItem,
-            this.diaControllerToolStripMenuItem});
+            this.diaControllerToolStripMenuItem,
+            this.imageQueueToolStripMenuItem});
          this.diashowToolStripMenuItem.Name = "diashowToolStripMenuItem";
          this.diashowToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
          this.diashowToolStripMenuItem.Text = "Diashow";
@@ -102,16 +104,15 @@
          // fullScreenToolStripMenuItem
          // 
          this.fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
-         this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+         this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
          this.fullScreenToolStripMenuItem.Text = "FullScreen";
          this.fullScreenToolStripMenuItem.Click += new System.EventHandler(this.OnClickedFullScreen);
          // 
          // diaControllerToolStripMenuItem
          // 
          this.diaControllerToolStripMenuItem.Name = "diaControllerToolStripMenuItem";
-         this.diaControllerToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+         this.diaControllerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
          this.diaControllerToolStripMenuItem.Text = "Dia-Controller";
-         this.diaControllerToolStripMenuItem.Click += new System.EventHandler(this.OnClickedDiaController);
          // 
          // extrasToolStripMenuItem
          // 
@@ -183,6 +184,13 @@
          this.customPictureBox1.Size = new System.Drawing.Size(1017, 538);
          this.customPictureBox1.TabIndex = 3;
          // 
+         // imageQueueToolStripMenuItem
+         // 
+         this.imageQueueToolStripMenuItem.Name = "imageQueueToolStripMenuItem";
+         this.imageQueueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.imageQueueToolStripMenuItem.Text = "Image Queue";
+         this.imageQueueToolStripMenuItem.Click += new System.EventHandler(this.OnClickedImageQueue);
+         // 
          // MainWindow
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -225,5 +233,6 @@
       private ToolStripSplitButton toolStripSplitButtonFirst;
       private ToolStripSplitButton toolStripSplitButtonLast;
       private Controls.CustomPictureBox customPictureBox1;
+      private ToolStripMenuItem imageQueueToolStripMenuItem;
    }
 }

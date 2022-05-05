@@ -3,8 +3,7 @@ namespace Dia.Dialogs
    public partial class MainWindow : Form
    {
       private DiaController _diaController;
-      private ToolDiaControl? _diaControl;
-      private DockingManager? _dockingManager;
+      private ChildWindow<ToolDiaControl> _diaControl;
 
       public MainWindow(string? initialFile = null)
       {
@@ -19,6 +18,13 @@ namespace Dia.Dialogs
          _diaController = new DiaController(OnLoadFile, initialFile);
          EnableStatusBarButtons(_diaController.HasValidContext);
          _diaController.ContextChanged += _diaController_ContextChanged;
+
+         _diaControl = new ChildWindow<ToolDiaControl>(
+            diashowToolStripMenuItem, 
+            this, 
+            () => new ToolDiaControl(_diaController, customPictureBox1), 
+            (diaControl) => { SetDiaControlPosition(diaControl); }
+         );
 
          customPictureBox1.RegisterEvents(this);
 
@@ -128,45 +134,10 @@ namespace Dia.Dialogs
          control.Left = ((Left + Width) - control.Width) - SAFE_SPACE;
       }
 
-      private void OnClickedDiaController(object sender, EventArgs e)
+      private void OnClickedImageQueue(object sender, EventArgs e)
       {
-         if (diaControllerToolStripMenuItem.Checked)
-         {
-            // Hide Dia-Control:
-            CloseDiaControlToolWindow();
-         }
-         else
-         {
-            OpenDiaControlToolWindow();
-         }
-      }
-
-      private void CloseDiaControlToolWindow()
-      {
-         if (_diaControl != null)
-         {
-            _diaControl.FormClosed -= _diaControl_FormClosed;
-            _diaControl.Close();
-            _diaControl = null;
-            _dockingManager?.Dispose();
-            _dockingManager = null;
-         }
-
-         diaControllerToolStripMenuItem.Checked = false;
-      }
-
-      private void OpenDiaControlToolWindow()
-      {
-         if (_diaControl == null)
-         {
-            _diaControl = new ToolDiaControl(_diaController, customPictureBox1);
-            _diaControl.FormClosed += _diaControl_FormClosed;
-            SetDiaControlPosition(_diaControl);
-            _dockingManager = new DockingManager(this, _diaControl);
-            _diaControl.Show(this);
-         }
-
-         diaControllerToolStripMenuItem.Checked = true;
+         ImageList imgList = new ImageList();
+         imgList.ShowDialog();
       }
 
       private void _diaControl_FormClosed(object? sender, FormClosedEventArgs e)
@@ -177,7 +148,7 @@ namespace Dia.Dialogs
 
       private void OnWindowShown(object sender, EventArgs e)
       {
-         OpenDiaControlToolWindow();
+         _diaControl.ShowChildWindow();
       }
 
       private void OnClickedOpenInEditor(object sender, EventArgs e)
