@@ -225,7 +225,7 @@ namespace Dia
          return false;
       }
 
-      private void LoadFirstPicture()
+      private void InvokeContextChange()
       {
          bool validContext = false;
 
@@ -233,10 +233,7 @@ namespace Dia
          {
             if (FileIndex.HasValue && MatchingFilesInDir != null)
             {
-               if (LoadCurrentPicture())
-               {
-                  validContext = true;
-               }
+               validContext = true;
             }
          }
 
@@ -255,6 +252,8 @@ namespace Dia
             index = Array.IndexOf(MatchingFilesInDir, Path.GetFileName(filepath));
          }
          FileIndex = index >= 0 ? index : null;
+
+         InvokeContextChange();
       }
 
       public void SetContext_Dir(string dirpath)
@@ -262,6 +261,7 @@ namespace Dia
          StopDiaShow();
          Dir = dirpath;
          TrySetFile();
+         InvokeContextChange();
       }
 
       private void LoadNextImage()
