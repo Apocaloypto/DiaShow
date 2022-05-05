@@ -5,18 +5,18 @@ namespace Dia
 {
    public class DiaController
    {
-      private string[]? _matchingFilesInDir;
+      public string[]? MatchingFilesInDir { get; private set; }
 
-      private string? __dir;
-      private string? _dir
+      private string? _dir;
+      public string? Dir
       {
-         get => __dir;
-         set
+         get => _dir;
+         private set
          {
-            __dir = value;
-            if (__dir == null)
+            _dir = value;
+            if (_dir == null)
             {
-               _matchingFilesInDir = null;
+               MatchingFilesInDir = null;
             }
             else
             {
@@ -41,19 +41,19 @@ namespace Dia
 
       private void ReloadMatchingFiles()
       {
-         _matchingFilesInDir = null;
+         MatchingFilesInDir = null;
 
          try
          {
-            if (!string.IsNullOrEmpty(__dir))
+            if (!string.IsNullOrEmpty(_dir))
             {
                string? currentFile = GetCurrentImageFileName();
 
-               _matchingFilesInDir = ImageLoader.GetMatchingFilesInDir(__dir);
+               MatchingFilesInDir = ImageLoader.GetMatchingFilesInDir(_dir);
 
                if (!string.IsNullOrEmpty(currentFile))
                {
-                  _fileIndex = Array.IndexOf(_matchingFilesInDir, currentFile);
+                  FileIndex = Array.IndexOf(MatchingFilesInDir, currentFile);
                }
             }
          }
@@ -63,6 +63,30 @@ namespace Dia
       }
 
       private int? _fileIndex;
+      public int? FileIndex
+      {
+         get => _fileIndex;
+         set
+         {
+            if (value != _fileIndex)
+            {
+               _fileIndex = value;
+
+               if (_fileIndex.HasValue && MatchingFilesInDir != null)
+               {
+                  while (_fileIndex < 0)
+                  {
+                     _fileIndex = MatchingFilesInDir.Length + _fileIndex;
+                  }
+
+                  if (_fileIndex > MatchingFilesInDir.Length - 1)
+                  {
+                     _fileIndex = _fileIndex % MatchingFilesInDir.Length;
+                  }
+               }
+            }
+         }
+      }
 
       private System.Timers.Timer? _diaTimer;
 
@@ -72,16 +96,16 @@ namespace Dia
       public bool IsPlaying => _diaTimer != null;
       public bool HasValidContext { get; private set; }
 
-      private string DirStatus => !string.IsNullOrEmpty(_dir) ? $"Directory: {_dir}" : string.Empty;
+      private string DirStatus => !string.IsNullOrEmpty(Dir) ? $"Directory: {Dir}" : string.Empty;
       private string MatchingFileStatus
       {
          get
          {
-            if (_matchingFilesInDir != null && _matchingFilesInDir.Any())
+            if (MatchingFilesInDir != null && MatchingFilesInDir.Any())
             {
-               return $"{_matchingFilesInDir.Length:N0} matching files";
+               return $"{MatchingFilesInDir.Length:N0} matching files";
             }
-            else if (!string.IsNullOrEmpty(_dir))
+            else if (!string.IsNullOrEmpty(Dir))
             {
                return "0 matching files";
             }
@@ -111,9 +135,9 @@ namespace Dia
       {
          get
          {
-            if (_fileIndex.HasValue)
+            if (FileIndex.HasValue)
             {
-               return $"file {_fileIndex.Value + 1}";
+               return $"file {FileIndex.Value + 1}";
             }
             else
             {
@@ -137,13 +161,13 @@ namespace Dia
 
       private void TrySetFile()
       {
-         if (!_fileIndex.HasValue && !string.IsNullOrEmpty(_dir))
+         if (!FileIndex.HasValue && !string.IsNullOrEmpty(Dir))
          {
             try
             {
-               if (_matchingFilesInDir?.Length >= 1)
+               if (MatchingFilesInDir?.Length >= 1)
                {
-                  _fileIndex = 0;
+                  FileIndex = 0;
                }
             }
             catch
@@ -154,9 +178,9 @@ namespace Dia
 
       private string? GetCurrentImageFileName()
       {
-         if (_fileIndex.HasValue && !string.IsNullOrEmpty(_dir) && _matchingFilesInDir != null && _fileIndex.Value >= 0 && _fileIndex.Value < _matchingFilesInDir.Length)
+         if (FileIndex.HasValue && !string.IsNullOrEmpty(Dir) && MatchingFilesInDir != null)
          {
-            return _matchingFilesInDir[_fileIndex.Value];
+            return MatchingFilesInDir[FileIndex.Value];
          }
          else
          {
@@ -167,9 +191,9 @@ namespace Dia
       private string? GetCurrentImageFilePath()
       {
          string? currentFileName = GetCurrentImageFileName();
-         if (_dir != null && !string.IsNullOrEmpty(currentFileName))
+         if (Dir != null && !string.IsNullOrEmpty(currentFileName))
          {
-            return Path.Combine(_dir, currentFileName);
+            return Path.Combine(Dir, currentFileName);
          }
          else
          {
@@ -199,10 +223,10 @@ namespace Dia
       {
          bool validContext = false;
 
-         if (!string.IsNullOrEmpty(_dir))
+         if (!string.IsNullOrEmpty(Dir))
          {
             TrySetFile();
-            if (_fileIndex.HasValue && _matchingFilesInDir != null)
+            if (FileIndex.HasValue && MatchingFilesInDir != null)
             {
                if (LoadCurrentPicture())
                {
@@ -218,42 +242,40 @@ namespace Dia
       public void SetContext_File(string filepath)
       {
          StopDiaShow();
-         _dir = Path.GetDirectoryName(filepath);
+         Dir = Path.GetDirectoryName(filepath);
 
          int index = -1;
-         if (_matchingFilesInDir != null)
+         if (MatchingFilesInDir != null)
          {
-            index = Array.IndexOf(_matchingFilesInDir, Path.GetFileName(filepath));
+            index = Array.IndexOf(MatchingFilesInDir, Path.GetFileName(filepath));
          }
 
-         _fileIndex = index >= 0 ? index : null;
+         FileIndex = index >= 0 ? index : null;
          LoadFirstPicture();
       }
 
       public void SetContext_Dir(string dirpath)
       {
          StopDiaShow();
-         _dir = dirpath;
-         _fileIndex = null;
+         Dir = dirpath;
+         FileIndex = null;
          LoadFirstPicture();
       }
 
       private void LoadNextImage()
       {
-         if (_fileIndex.HasValue && _matchingFilesInDir != null)
+         if (FileIndex.HasValue && MatchingFilesInDir != null)
          {
-            _fileIndex++;
-            _fileIndex = _fileIndex % _matchingFilesInDir.Length;
-
+            FileIndex++;
             LoadCurrentPicture();
          }
       }
 
       private void LoadFirstImage()
       {
-         if (_fileIndex.HasValue && _matchingFilesInDir != null)
+         if (FileIndex.HasValue && MatchingFilesInDir != null)
          {
-            _fileIndex = 0;
+            FileIndex = 0;
 
             LoadCurrentPicture();
          }
@@ -261,23 +283,18 @@ namespace Dia
 
       private void LoadPrevImage()
       {
-         if (_fileIndex.HasValue && _matchingFilesInDir != null)
+         if (FileIndex.HasValue && MatchingFilesInDir != null)
          {
-            _fileIndex--;
-            if (_fileIndex < 0)
-            {
-               _fileIndex = _matchingFilesInDir.Length - 1;
-            }
-
+            FileIndex--;
             LoadCurrentPicture();
          }
       }
 
       private void LoadLastImage()
       {
-         if (_fileIndex.HasValue && _matchingFilesInDir != null)
+         if (FileIndex.HasValue && MatchingFilesInDir != null)
          {
-            _fileIndex = _matchingFilesInDir.Length - 1;
+            FileIndex = MatchingFilesInDir.Length - 1;
 
             LoadCurrentPicture();
          }

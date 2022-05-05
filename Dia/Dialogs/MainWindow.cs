@@ -31,7 +31,7 @@ namespace Dia.Dialogs
          _imageList = new ChildWindow<ImageList>(
             imageQueueToolStripMenuItem,
             this,
-            () => new ImageList(),
+            () => new ImageList(_diaController),
             SetImageListPosition,
             DockingManager.DockToEnum.TopLeft
          );
