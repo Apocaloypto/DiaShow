@@ -83,6 +83,8 @@ namespace Dia
                   {
                      _fileIndex = _fileIndex % MatchingFilesInDir.Length;
                   }
+
+                  LoadCurrentPicture();
                }
             }
          }
@@ -169,6 +171,10 @@ namespace Dia
                {
                   FileIndex = 0;
                }
+               else
+               {
+                  FileIndex = null;
+               }
             }
             catch
             {
@@ -225,7 +231,6 @@ namespace Dia
 
          if (!string.IsNullOrEmpty(Dir))
          {
-            TrySetFile();
             if (FileIndex.HasValue && MatchingFilesInDir != null)
             {
                if (LoadCurrentPicture())
@@ -249,17 +254,14 @@ namespace Dia
          {
             index = Array.IndexOf(MatchingFilesInDir, Path.GetFileName(filepath));
          }
-
          FileIndex = index >= 0 ? index : null;
-         LoadFirstPicture();
       }
 
       public void SetContext_Dir(string dirpath)
       {
          StopDiaShow();
          Dir = dirpath;
-         FileIndex = null;
-         LoadFirstPicture();
+         TrySetFile();
       }
 
       private void LoadNextImage()
@@ -267,7 +269,6 @@ namespace Dia
          if (FileIndex.HasValue && MatchingFilesInDir != null)
          {
             FileIndex++;
-            LoadCurrentPicture();
          }
       }
 
@@ -276,8 +277,6 @@ namespace Dia
          if (FileIndex.HasValue && MatchingFilesInDir != null)
          {
             FileIndex = 0;
-
-            LoadCurrentPicture();
          }
       }
 
@@ -286,7 +285,6 @@ namespace Dia
          if (FileIndex.HasValue && MatchingFilesInDir != null)
          {
             FileIndex--;
-            LoadCurrentPicture();
          }
       }
 
@@ -295,8 +293,6 @@ namespace Dia
          if (FileIndex.HasValue && MatchingFilesInDir != null)
          {
             FileIndex = MatchingFilesInDir.Length - 1;
-
-            LoadCurrentPicture();
          }
       }
 
